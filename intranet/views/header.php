@@ -1,29 +1,44 @@
-<body>
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Modelpack | Intranet</title>
+        <meta charset="UTF-8"> 
+        <meta property="og:site_name" content="" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="" />
+
+        <link rel="shortcut icon" href="<?php echo URL; ?>../favicon.png" Content-type="image/x-icon" />
+        <link rel="stylesheet" href="<?php echo URL; ?>public/css/style.css" />
+        <link rel="stylesheet" href="<?php echo URL; ?>public/css/zebra_form.css" />
+        <link rel="stylesheet" href="<?php echo URL; ?>public/css/jquery.Jcrop.css" />
+        <link rel="stylesheet" href="<?php echo URL; ?>public/css/HTML5Upload.css" />
+<!--        <link rel="stylesheet" href="<?php //echo URL; ?>public/css/file-upload.css" />-->
+        <!-- <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/sunny/jquery-ui.css" />-->
+       
+    </head>
+    <body>
         <?php Session::init();
         $strNoCache = "?nocache=".time();
         ?>
             <header>
                 <div class="header_logo">
                     <div class="wrapper">
-                    <a href="<?=URL; ?>"><div id="logo"><img src="<?=WEB?>/public/img/logo.png"></div></a>
-                    <div class="header_login"></div>
+                        <a href="<?php echo URL . LANG; ?>/"><div id="logo"><img src="<?=URL?>/public/images/logo.png"></div></a>
+                    <div class="header_login"><a onClick="location.href = '<?= URL . LANG . '/users/editCreateUser/' . Session::get('userid'); ?>'">My account</a> | <a onClick="location.href = '<?php echo URL . 'login/out'; ?>'">Logout</a></div>
+                  
                     </div>
                 </div> 
                 <nav class="header_menu" id="sidebarnav">
                     <div class="wrapper">
                     <ul id="menuNav">
-                        <? if ($_SESSION[INSTALLATION_KEY]['session_account_type'] == 'owner') { ?><li><a href="<?=URL; ?>home/lista">home</a></li><? } ?>
-                        <? if ($_SESSION[INSTALLATION_KEY]['session_account_type'] == 'owner') { ?><li><a href="<?=URL; ?>pages/lista">pages</a></li><? } ?>
-                        <? if ($_SESSION[INSTALLATION_KEY]['session_account_type'] == 'owner') { ?><li><a href="<?=URL; ?>gift/lista">gift</a></li><? } ?>
-                        <? if ($_SESSION[INSTALLATION_KEY]['session_account_type'] == 'owner') { ?><li><a href="<?=URL; ?>suggestions/lista">suggestions</a></li><? } ?>
-                        <? if ($_SESSION[INSTALLATION_KEY]['session_account_type'] == 'owner') { ?><li><a href="<?=URL; ?>banner/lista">banner</a></li><? } ?>
-                        <? if ($_SESSION[INSTALLATION_KEY]['session_account_type'] == 'owner') { ?><li><a href="<?=URL; ?>menu">menu</a></li><? } ?>
-                        <li><a href="<?=URL?>booking">hotel</a></li>
-                    </ul>
-                    <ul id="langNav">
-                        <li style="border-right: 1px solid #cccccc;"><a href="<?=WEB?>" target="_blank">View site</a></li>
-                        <li><a onClick="location.href = '<?= URL . 'login/out'; ?>'">Logout</a></li>
-              
+                        <li><a href="<?php echo URL . LANG; ?>/models/lista">models</a></li>
+                        <li><a href="<?php echo URL . LANG; ?>/packages/lista">packages</a></li>
+                        <li><a href="<?php echo URL . LANG; ?>/contacts/lista">contacts</a></li>
+                        <? if (Session::get('role') == 1 || Session::get('role') == 6 || Session::get('role') == 2) { ?><li><a href="<?php echo URL . LANG; ?>/agencies/lista">agencies</a></li> <? } ?>
+                        <? if (Session::get('role') == 1 || Session::get('role') == 6 || Session::get('role') == 2) { ?><li><a href="<?php echo URL . LANG; ?>/users/lista">users</a></li><? } ?>
+                        <? if (Session::get('role') == 1 || Session::get('role') == 6 || Session::get('role') == 2) { ?><li><a href="<?php echo URL . LANG; ?>/log/lista">log</a></li><? } ?>
                     </ul>
                     </div>
                 </nav>

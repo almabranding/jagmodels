@@ -298,7 +298,7 @@ header {
     color: #FFFFFF;
     cursor: pointer;
     font-size: 14px;
-    margin: 70px 0 0;
+    margin: 70px 34px 0;
     position: absolute;
     right: 0;
 }
@@ -481,7 +481,7 @@ header {
     z-index: 200;
 }
 .embedVideo{
-    /*background: url("../img/embedVideo.png") no-repeat scroll 0 0 transparent;*/
+    /*background: url("../images/embedVideo.png") no-repeat scroll 0 0 transparent;*/
     background: none repeat scroll 0 0 #000000;
     height: 100%;
     opacity: 0.7;
@@ -505,7 +505,7 @@ header {
     border-left: 2px solid #373737 !important;
 }
 .table-header-repeat a{
-    background: url("../img/table_sort_arrow.gif") no-repeat scroll right center transparent;
+    background: url("../images/table_sort_arrow.gif") no-repeat scroll right center transparent;
     color: #FFFFFF;
     font-family: Tahoma;
     font-size: 13px;
@@ -522,7 +522,7 @@ tableTitle li {
     border-left: 1px solid #373737;
 }
 #toggle-all {
-    background: url("../img/checkbox.gif") repeat scroll 0 -17px transparent;
+    background: url("../images/checkbox.gif") repeat scroll 0 -17px transparent;
     cursor: pointer;
     display: block;
     height: 17px;
@@ -563,24 +563,24 @@ tableTitle li {
      border: 0 !important;
 }
 #product-table .duplicate {
-    background: url("../img/icon_duplicate.gif") no-repeat scroll 0 0 transparent; 
+    background: url("../images/icon_duplicate.gif") no-repeat scroll 0 0 transparent; 
 }
 #product-table .duplicate:hover {
-    background: url("../img/icon_duplicate.gif") no-repeat scroll 0 -24px transparent;
+    background: url("../images/icon_duplicate.gif") no-repeat scroll 0 -24px transparent;
 }
 #product-table .edit {
-    background: url("../img/table_icon_1.gif") no-repeat scroll 0 0 transparent;
+    background: url("../images/table_icon_1.gif") no-repeat scroll 0 0 transparent;
   
 }
 #product-table .edit:hover {
-    background: url("../img/table_icon_1.gif") no-repeat scroll 0 -24px transparent;
+    background: url("../images/table_icon_1.gif") no-repeat scroll 0 -24px transparent;
 }
 #product-table .delete {
-    background: url("../img/table_icon_2.gif") no-repeat scroll 0 0 transparent;
+    background: url("../images/table_icon_2.gif") no-repeat scroll 0 0 transparent;
    
 }
 #product-table .delete:hover {
-    background: url("../img/table_icon_2.gif") no-repeat scroll 0 -24px transparent;
+    background: url("../images/table_icon_2.gif") no-repeat scroll 0 -24px transparent;
 }
 
 #login-box {
@@ -703,7 +703,7 @@ tableTitle li {
     height: 206px;
 }
 .modelList a{
-    background: url(../img/nomodel.jpg);
+    background: url(../images/nomodel.jpg);
     background-size: cover;
 }
 .modelList .modelName{
@@ -711,7 +711,7 @@ tableTitle li {
   
 }
 #print {
-    background: url("../img/print.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    background: url("../images/print.png") no-repeat scroll left center rgba(0, 0, 0, 0);
     font-size: 12px;
     height: 21px;
     line-height: 21px;
@@ -746,7 +746,7 @@ tableTitle li {
     border: 3px solid #bdd5fe;
 }
 #arrowBack{
-    background: url("../img/arrowBack.png") no-repeat scroll left center transparent;
+    background: url("../images/arrowBack.png") no-repeat scroll left center transparent;
     height: 14px;
     padding-left: 37px;
     width: auto;

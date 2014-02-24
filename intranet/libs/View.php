@@ -12,7 +12,6 @@ class View {
             require 'views/' . $name . '.php';    
         }
         else {
-            require 'views/head.php';
             require 'views/header.php';
             require 'views/' . $name . '.php';
             require 'views/footer.php';    
@@ -22,8 +21,8 @@ class View {
     {
         require 'views/' . $name . '.php';
     }
-    function viewUploadFile($typeUpload){
-        $view= '<h2 style="width:100%">Upload image</h2>
+    function viewUploadFile($id,$typeUpload='models'){
+        $view= '<h2 style="width:100%">Upload project</h2>
         <div id="dropbox">
             <input id="project" type="hidden" value="'.$id.'">
             <input id="typeUpload" type="hidden" value="'.$typeUpload.'">

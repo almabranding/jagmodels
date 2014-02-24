@@ -46,10 +46,7 @@ function showPop(id) {
     $('#white_full').css('display', 'block');
     $('#' + id).css('display', 'block');
 }
-function secureMsg(Msg,route){
-    if(confirm(Msg))
-            location.href = ROOT+route;
-}
+
 $(document).ready(function() {
 
     $("#modelList").change(function() {

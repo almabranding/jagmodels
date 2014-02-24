@@ -9,27 +9,21 @@ class Login_Model extends Model
 
     public function run()
     {
-        $sth = $this->db->prepare("SELECT * FROM book_accounts WHERE 
-                user_name = :user_name AND password = :password");
+        $sth = $this->db->prepare("SELECT * FROM users WHERE 
+                email = :email AND password = :password");
         $sth->execute(array(
-            ':user_name' => $_POST['login'],
-            ':password' => md5($_POST['password'])
-           //':password' => Hash::create('sha256', $_POST['password'], HASH_PASSWORD_KEY)
+            ':email' => $_POST['login'],
+            ':password' => Hash::create('sha256', $_POST['password'], HASH_PASSWORD_KEY)
         ));
         $data = $sth->fetch();
         $count =  $sth->rowCount();
         if ($count > 0) {
             // login
             Session::init();
-            Session::set('account_type', $data['account_type']);
+            Session::set('role', $data['role']);
             Session::set('loggedIn', true);
             Session::set('userid', $data['id']);
-            $_SESSION[INSTALLATION_KEY]['session_preferred_language'] = $data['preferred_language'];
-            $_SESSION[INSTALLATION_KEY]['session_account_logged'] = 'terrae.com.mialias.net/intranet/PHPHotel/'.$data['id'];
-            $_SESSION[INSTALLATION_KEY]['session_account_id'] =  $data['id'];
-            $_SESSION[INSTALLATION_KEY]['session_account_type'] =  $data['account_type'];
-            
-            header('location: '.URL.LANG.'/home');
+            header('location: '.URL.LANG.'/models');
         } else {
             header('location: '.URL);
         }

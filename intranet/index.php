@@ -2,9 +2,10 @@
 //error_reporting(0);
 require 'config.php';
 require 'util/Auth.php';
-
+require ROOT.'../libs/SIU.php';
+// Also spl_autoload_register (Take a look at it if you like)
 function __autoload($class) {
-    if (file_exists(LIBS . $class .".php")) require LIBS . $class .".php";
+    require LIBS . $class .".php";
 }
 
 ini_set('include_path', 'util/PEAR');

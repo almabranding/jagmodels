@@ -1,6 +1,5 @@
-
 $(function() {
-   $('.sortable tbody').sortable({
+   $('#sortable').sortable({
         start: function(event, ui) {
             $(ui.helper).addClass("sortable-drag-clone");
         },
@@ -8,10 +7,10 @@ $(function() {
             $(ui.helper).removeClass("sortable-drag-clone");
         },
         update: function(event, ui) {
-            updateListItem($(this));
+            updateListItem($(ui.item).attr('rel'), $(this).attr('rel'));
         },
         tolerance: "pointer",
-        connectWith: ".sortable tbody",
+        connectWith: "#sortable",
         placeholder: "sortable-draggable-placeholder",
         forcePlaceholderSize: true,
         appendTo: 'body',
@@ -20,12 +19,13 @@ $(function() {
     }).disableSelection();
     //var sorted = $( "#sortable" ).sortable( "serialize", { key: "sort" } );    
 });
-function updateListItem(sortable) {
-    var sorted = sortable.sortable( "toArray" );
-    $.post(ROOT+'ES/home/sort',{ 'sort[]': sorted}).done(function(data) {});
+
+function updateListItem(itemId, newStatus) {
+    //var sorted = $( "#sortable" ).sortable( "toArray" );
+    var sorted = $( "#sortable" ).sortable( "serialize" );
+     var section=$('#sectionId').val();
+    $.post(ROOT+'home/sort',sorted+'&action=updateOrder&id='+section).done(function(data) {});
   }
-  
-  
   $(document).ready(function() {
     $('#addModels').on('click',function(){
          var $listaImages=$('.checkFoto:checked').serialize();

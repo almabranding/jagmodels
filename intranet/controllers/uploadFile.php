@@ -6,15 +6,21 @@ class uploadFile extends Controller {
         parent::__construct();
         if(!Session::get('loggedIn')) header('location: '.URL);
     }
-    function upload() {
-       $img=new upload('');
-       return $img->getImg();
+    function upload($added='model',$Id=0) {
+       $img=$this->model->upload('temp/');
+       if(!$img['nameFile']) return; 
+       $imgId=$this->model->insertImg($img);
+       switch($added){
+           case 'models': $this->model->insertModel($imgId,$Id);break;
+           case 'section': $this->model->insertSection($imgId,$Id);break;
+       }
+       
     }
     function orderByName($model,$num){
         $this->model->orderByName($model,$num);
     }
-    function crop($return='/') {
+    function crop() {
        $this->model->crop();
-       header('location: ' . $return);
+       header('location: ' . URL . 'models/editportafolio/'.$_POST['model_id']);
     }
 }

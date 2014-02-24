@@ -11,7 +11,7 @@ class Bootstrap {
     private $_errorFile = 'error.php';
     private $_defaultFile = 'index.php';
     private $_ZebraForm = 'Zebra_Form.php';
-    private $_allowLang = Array('es','en','it');
+    private $_allowLang = Array('EN','ES','CH','JP');
     /**
      * Starts the Bootstrap
      * 
@@ -110,14 +110,14 @@ class Bootstrap {
             }
         }
         define('PATH',$auxUrl);
-        if(in_array(strtolower($this->_url[0]),$this->_allowLang)){
-            Session::set('lang', strtolower(array_shift($this->_url)));
+        if(in_array($this->_url[0],$this->_allowLang)){
+            Session::set('lang', array_shift($this->_url));
             if(!Session::get('lang')){
-                Session::set('lang','en');
+                Session::set('lang','EN');
             }
             define('LANG',Session::get('lang'));
         }else{
-            Session::set('lang','en');
+            Session::set('lang','EN');
             define('LANG',Session::get('lang'));
         }
     }
@@ -152,7 +152,6 @@ class Bootstrap {
             require $file;
             $this->_controller = new $this->_url[0];
             $this->_controller->loadModel($this->_url[0], $this->_modelPath);
-            $this->_controller->loadLang( $this->_allowLang);
             
         } else {
             $this->_error();
@@ -219,9 +218,6 @@ class Bootstrap {
         $this->_controller = new Error();
         $this->_controller->index();
         return false;
-    }
-    public function getLangs(){
-        return $this->_allowLang;
     }
 
 }

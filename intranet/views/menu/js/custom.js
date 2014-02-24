@@ -22,5 +22,5 @@ $(function() {
 });
 function updateListItem(sortable) {
     var sorted = sortable.sortable( "toArray" );
-    $.post(ROOT+'ES/menu/sort',{ 'sort[]': sorted}).done(function(data) {});
+    $.post(ROOT+'ES/menu/sort',{ 'choices[]': sorted}).done(function(data) {});
   }

@@ -285,12 +285,11 @@
     }
 
     function afterAll() {
-//        var model = $('#project').val();
-//        $.post('/intranet/uploadFile/orderByName/' + model + '/' + files_count).done(function(data) {
-//           
-//        });
-         if (window.confirm('All images has been uploaded'))
+        var model = $('#project').val();
+        $.post('/intranet/uploadFile/orderByName/' + model + '/' + files_count).done(function(data) {
+            if (window.confirm('All images has been uploaded'))
                 location.reload();
+        });
         return opts.afterAll();
     }
 
