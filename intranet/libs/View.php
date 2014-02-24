@@ -21,7 +21,7 @@ class View {
     {
         require 'views/' . $name . '.php';
     }
-    function viewUploadFile($id,$typeUpload='models'){
+    function viewUploadFile($typeUpload){
         $view= '<h2 style="width:100%">Upload project</h2>
         <div id="dropbox">
             <input id="project" type="hidden" value="'.$id.'">

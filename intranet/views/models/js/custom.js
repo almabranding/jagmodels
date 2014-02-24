@@ -11,12 +11,48 @@ function updateListItem(itemId, newStatus) {
 }
 $(document).ready(function() {
     var $model_id = $('#model_id').val();
-    $("#compositeBox, #draggable").sortable({
-        connectWith: ".compositeBox,.sortable",
-        update: function(event, ui) {
-            updateDragItem();
+    $('.imgmove').draggable({
+        revert: 'invalid',
+        stop: function() {
+            // Make it properly draggable again in case it was cancelled
+            $(this).draggable('option', 'revert', 'invalid');
         }
     });
+
+    $('.group-box').droppable({
+        drop: function(event, ui) {
+            var $this = $(this);
+            // Check number of elements already in
+            if ($this.find('.imgmove').length >= 2) {
+                // Cancel drag operation (make it always revert)
+                ui.draggable.draggable('option', 'revert', true);
+                return;
+            }
+
+            // Put dragged item into container
+            ui.draggable.appendTo($this).css({
+                top: '0px',
+                left: '0px'
+            });
+
+            // Do whatever you want with ui.draggable, which is a valid dropped object
+        }
+    });
+    $('#library').droppable({
+        drop: function(event, ui) {
+            var $this = $(this);
+            ui.draggable.appendTo($this).css({
+                top: '0px',
+                left: '0px'
+            });
+        }
+    });
+    /*$("#compositeBox, #draggable").sortable({
+     connectWith: ".compositeBox,.sortable",
+     update: function(event, ui) {
+     updateDragItem();
+     }
+     });*/
     $('.listImage').on('click', function() {
         var $checkbox = $(this).parent().children('.checkFoto');
         $checkbox.prop('checked', !$checkbox.prop('checked'));

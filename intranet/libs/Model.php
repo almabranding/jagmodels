@@ -67,13 +67,9 @@ class Model {
         $pagination['order']=$order;
         return $pagination;
     }
-    public function idToRute($id) {
-       $id=str_pad($id, 9, "0", STR_PAD_LEFT);
-       $folder=str_split($id,3);
-       foreach($folder as $value){
-           $rute.=$value.'/';
-       } 
-       return $rute;
-    }
+    public static function getRouteImg($date) {
+        $timestamp = strtotime($date);
+        return date("Y",$timestamp).'/'.date("m",$timestamp).'/';
+     }
 
 }

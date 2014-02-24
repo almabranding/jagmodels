@@ -42,5 +42,15 @@ class Users extends Controller {
     {
         $this->model->sort();
     }
+    function run()
+    {
+       
+        $this->model->run();
+    }
+    function out()
+    {
+       
+        $this->model->out();
+    }
     
 }

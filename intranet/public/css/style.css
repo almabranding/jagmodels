@@ -834,3 +834,22 @@ tableTitle li {
     margin:auto;
     overflow: hidden;
 }
+#library{
+    border:1px solid red;
+}
+#library li{
+    display: inline-block;
+}
+#library li img{
+    
+}
+.group-box{
+    border: 1px solid #CCCCCC;
+    display: inline-block;
+    height: 368px;
+    text-align: center;
+    width: 370px;
+}
+.group-box > li{
+    display: inline-block;
+}

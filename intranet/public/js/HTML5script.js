@@ -14,7 +14,7 @@ $(function() {
         paramname: 'pic',
         maxfiles: maxfiles,
         maxfilesize: maxfilesize,
-        url: URL + LANG + 'uploadFile/upload/' + typeUpload + '/' + project,
+        url: URL + LANG + typeUpload,
         uploadFinished: function(i, file, response) {
             $.data(file).addClass('done');
             // response is the JSON object that post_file.php returns
@@ -36,6 +36,7 @@ $(function() {
         },
         // Called before each upload is started
         beforeEach: function(file) {
+            
             if(!file.type.match(/^image\//)){
              alert('Only images are allowed!');
              

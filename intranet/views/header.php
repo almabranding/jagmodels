@@ -25,20 +25,20 @@
             <header>
                 <div class="header_logo">
                     <div class="wrapper">
-                        <a href="<?php echo URL . LANG; ?>/"><div id="logo"><img src="<?=URL?>/public/images/logo.png"></div></a>
-                    <div class="header_login"><a onClick="location.href = '<?= URL . LANG . '/users/editCreateUser/' . Session::get('userid'); ?>'">My account</a> | <a onClick="location.href = '<?php echo URL . 'login/out'; ?>'">Logout</a></div>
+                        <a href="<?=URL ; ?>/"><div id="logo"><img src="<?=URL?>/public/images/logo.png"></div></a>
+                    <div class="header_login"><a onClick="location.href = '<?= URL  . '/users/editCreateUser/' . Session::get('userid'); ?>'">My account</a> | <a onClick="location.href = '<?= URL . 'users/out'; ?>'">Logout</a></div>
                   
                     </div>
                 </div> 
                 <nav class="header_menu" id="sidebarnav">
                     <div class="wrapper">
                     <ul id="menuNav">
-                        <li><a href="<?php echo URL . LANG; ?>/models/lista">models</a></li>
-                        <li><a href="<?php echo URL . LANG; ?>/packages/lista">packages</a></li>
-                        <li><a href="<?php echo URL . LANG; ?>/contacts/lista">contacts</a></li>
-                        <? if (Session::get('role') == 1 || Session::get('role') == 6 || Session::get('role') == 2) { ?><li><a href="<?php echo URL . LANG; ?>/agencies/lista">agencies</a></li> <? } ?>
-                        <? if (Session::get('role') == 1 || Session::get('role') == 6 || Session::get('role') == 2) { ?><li><a href="<?php echo URL . LANG; ?>/users/lista">users</a></li><? } ?>
-                        <? if (Session::get('role') == 1 || Session::get('role') == 6 || Session::get('role') == 2) { ?><li><a href="<?php echo URL . LANG; ?>/log/lista">log</a></li><? } ?>
+                        <li><a href="<?php echo URL ; ?>models/lista">models</a></li>
+                        <li><a href="<?php echo URL ; ?>packages/lista">packages</a></li>
+                        <li><a href="<?php echo URL ; ?>contacts/lista">contacts</a></li>
+                        <? if (Session::get('role') == 1 || Session::get('role') == 6 || Session::get('role') == 2) { ?><li><a href="<?php echo URL ; ?>agencies/lista">agencies</a></li> <? } ?>
+                        <? if (Session::get('role') == 1 || Session::get('role') == 6 || Session::get('role') == 2) { ?><li><a href="<?php echo URL ; ?>users/lista">users</a></li><? } ?>
+                        <? if (Session::get('role') == 1 || Session::get('role') == 6 || Session::get('role') == 2) { ?><li><a href="<?php echo URL ; ?>log/lista">log</a></li><? } ?>
                     </ul>
                     </div>
                 </nav>

@@ -8,7 +8,7 @@ class Models extends Controller {
         if(!Session::get('loggedIn')) header('location: '.URL);
     }
     function index() { 
-        header('location: '.URL.LANG.'/models/lista');  
+        header('location: '.URL.'/models/lista');  
     }
     public function view($id) 
     {
@@ -27,9 +27,13 @@ class Models extends Controller {
         $this->view->categories=$this->model->getModelsCategories();
         $this->view->render('models/list');  
     }
+    public function addPhoto($modelId){
+       $img=new upload;
+       $this->model->addPhoto($modelId,$img->getImg());
+    }
      public function addmodel() 
     {
-        $this->view->form=$this->model->editModelForm('add');
+        $this->view->form=$this->model->editModelForm();
         $this->view->render('models/editmodels');  
     }
     public function deleteModel($id) 
@@ -40,7 +44,7 @@ class Models extends Controller {
     public function editmodel($id) 
     {
         $this->view->model=$this->model->getModel($id);
-        $this->view->form=$this->model->editModelForm('edit',$id);
+        $this->view->form=$this->model->editModelForm($id);
         $this->view->render('models/editmodels');  
     }
     public function editportafolio($id) 

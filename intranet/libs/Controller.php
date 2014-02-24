@@ -1,6 +1,5 @@
 <?php
 class Controller {
-    private $_langs = Array('EN','ES','CH','RU');
     function __construct() {
         //echo 'Main controller<br />';
         $this->view = new View();
@@ -19,8 +18,10 @@ class Controller {
             $modelName = $name . '_Model';
             $this->model = new $modelName();
         }        
-        $this->model->_langs=$this->_langs;
-        $this->view->_langs =$this->_langs;
+    }
+    public function loadLang($_langs) {
+        $this->model->_langs=$_langs;
+        $this->view->_langs =$_langs;
     }
     public function loadSingleModel($name, $modelPath = 'models/') {
         

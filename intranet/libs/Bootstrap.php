@@ -10,8 +10,8 @@ class Bootstrap {
     private $_modelPath = 'models/'; // Always include trailing slash
     private $_errorFile = 'error.php';
     private $_defaultFile = 'index.php';
-    private $_ZebraForm = 'Zebra_Form.php';
-    private $_allowLang = Array('EN','ES','CH','JP');
+    private $_ZebraForm = 'Zebra_Form/Zebra_Form.php';
+    private $_allowLang = Array('en','es');
     /**
      * Starts the Bootstrap
      * 
@@ -105,19 +105,19 @@ class Bootstrap {
         $auxUrl='';
         $this->_url = explode('/', $url);
         foreach($this->_url as $id=>$value){
-            if(!in_array($value,$this->_allowLang)){
+            if(!in_array(strtolower($value),$this->_allowLang)){
                 $auxUrl.='/'.$value;
             }
         }
         define('PATH',$auxUrl);
-        if(in_array($this->_url[0],$this->_allowLang)){
+        if(in_array(strtolower($this->_url[0]),$this->_allowLang)){
             Session::set('lang', array_shift($this->_url));
             if(!Session::get('lang')){
-                Session::set('lang','EN');
+                Session::set('lang','en');
             }
             define('LANG',Session::get('lang'));
         }else{
-            Session::set('lang','EN');
+            Session::set('lang','en');
             define('LANG',Session::get('lang'));
         }
     }
@@ -152,6 +152,7 @@ class Bootstrap {
             require $file;
             $this->_controller = new $this->_url[0];
             $this->_controller->loadModel($this->_url[0], $this->_modelPath);
+            $this->_controller->loadLang( $this->_allowLang);
             
         } else {
             $this->_error();

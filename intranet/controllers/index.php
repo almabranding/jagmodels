@@ -8,11 +8,11 @@ class Index extends Controller {
     }
     
     function index() {
-        $this->view->render('login/index',true);
+        $this->view->render('users/login',true);
     }
     
     function details() {
-        $this->view->render('index/index');
+        $this->view->render('users/login');
     }
     
 }
