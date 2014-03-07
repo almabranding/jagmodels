@@ -2,7 +2,7 @@
     <table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table" class='<?php echo ($this->list['sort']) ? 'sortable' : '' ?>'>      
         <?php
         if ($this->list['values']==null)
-            exit;
+            return 0;
         echo ' <tr>';
         foreach ($this->list['title'] as $k => $value) {
             $style = 'width:' . $value['width'];

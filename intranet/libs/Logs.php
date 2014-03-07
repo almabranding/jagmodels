@@ -10,13 +10,13 @@ class Logs
             'updated_at' =>Model::getTimeSQL()
         );
         $model=new model();
-        $model->db->insert('log', $data);
+        $model->db->insert(DB_PREFIX .'log', $data);
     }
     
     public static function get($key)
     {
         $model=new model();
-        return $model->db->select('SELECT * FROM log WHERE id = :id', 
+        return $model->db->select('SELECT * FROM '.DB_PREFIX .'log WHERE id = :id', 
             array('id' => $key));
     }
     

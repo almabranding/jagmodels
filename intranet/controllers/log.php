@@ -13,7 +13,7 @@ class Log extends Controller {
         if(!Session::get('role')==1 && !Session::get('role')==6) header('location: ' . URL . LANG . '/models/lista/');
         $this->model->pag=$pag;
         $this->view->list=$this->model->logToTable($this->model->getLogList($pag,$maxpp,$order),$order);           
-        $this->view->pagination=$this->model->getPagination($pag,$maxpp,'log','log/lista');
+        $this->view->pagination=$this->model->getPagination($pag,$maxpp,DB_PREFIX .'log','log/lista');
         $this->view->render('log/list');  
     }
     public function deleteLog() 

@@ -249,7 +249,7 @@ form p{
     margin: 10px 0;
 }
 .btnDelete{
-    background: none repeat scroll 0 0 #BB0000;
+    background: none repeat scroll 0 0 #BB0000 !important;
 }
 .btn:hover{
     background-color: #135dab;
@@ -307,10 +307,12 @@ header {
     display: inline;
 }
 #logo{
+    width: 140px;
     float: left;
-    margin: 50px 34px 0;
+    margin: 10px 34px 0;
     color:#ababab;    
 }
+#logo img{width: 100%;}
 .header_menu{
     height: 40px;
     padding-left: 10px;
@@ -481,7 +483,7 @@ header {
     z-index: 200;
 }
 .embedVideo{
-    /*background: url("../images/embedVideo.png") no-repeat scroll 0 0 transparent;*/
+    /*background: url("../img/embedVideo.png") no-repeat scroll 0 0 transparent;*/
     background: none repeat scroll 0 0 #000000;
     height: 100%;
     opacity: 0.7;
@@ -505,7 +507,7 @@ header {
     border-left: 2px solid #373737 !important;
 }
 .table-header-repeat a{
-    background: url("../images/table_sort_arrow.gif") no-repeat scroll right center transparent;
+    background: url("../img/table_sort_arrow.gif") no-repeat scroll right center transparent;
     color: #FFFFFF;
     font-family: Tahoma;
     font-size: 13px;
@@ -522,7 +524,7 @@ tableTitle li {
     border-left: 1px solid #373737;
 }
 #toggle-all {
-    background: url("../images/checkbox.gif") repeat scroll 0 -17px transparent;
+    background: url("../img/checkbox.gif") repeat scroll 0 -17px transparent;
     cursor: pointer;
     display: block;
     height: 17px;
@@ -563,31 +565,31 @@ tableTitle li {
      border: 0 !important;
 }
 #product-table .duplicate {
-    background: url("../images/icon_duplicate.gif") no-repeat scroll 0 0 transparent; 
+    background: url("../img/icon_duplicate.gif") no-repeat scroll 0 0 transparent; 
 }
 #product-table .duplicate:hover {
-    background: url("../images/icon_duplicate.gif") no-repeat scroll 0 -24px transparent;
+    background: url("../img/icon_duplicate.gif") no-repeat scroll 0 -24px transparent;
 }
 #product-table .edit {
-    background: url("../images/table_icon_1.gif") no-repeat scroll 0 0 transparent;
+    background: url("../img/table_icon_1.gif") no-repeat scroll 0 0 transparent;
   
 }
 #product-table .edit:hover {
-    background: url("../images/table_icon_1.gif") no-repeat scroll 0 -24px transparent;
+    background: url("../img/table_icon_1.gif") no-repeat scroll 0 -24px transparent;
 }
 #product-table .delete {
-    background: url("../images/table_icon_2.gif") no-repeat scroll 0 0 transparent;
+    background: url("../img/table_icon_2.gif") no-repeat scroll 0 0 transparent;
    
 }
 #product-table .delete:hover {
-    background: url("../images/table_icon_2.gif") no-repeat scroll 0 -24px transparent;
+    background: url("../img/table_icon_2.gif") no-repeat scroll 0 -24px transparent;
 }
 
 #login-box {
     background: none repeat scroll 0 0 #000000;
     color: #EBEBEB;
     height: auto;
-    margin-top: -122px;
+    margin-top: -201px;
     padding: 0;
     position: absolute;
     top: 50%;
@@ -646,9 +648,10 @@ tableTitle li {
 #login-box #header{
     background: none repeat scroll 0 0 #555555;
     padding: 22px;
+    position: relative;
 }
 #login-box #header #logo{
-    display: inline-block;
+    display: block;
     float: none;
     vertical-align: middle;
     margin: auto;
@@ -658,7 +661,7 @@ tableTitle li {
     margin: auto;
     position: absolute;
     right: 20px;
-    top: 37px;
+    bottom: 0px;
     vertical-align: middle;
 }
 .login-box-options  {
@@ -690,7 +693,7 @@ tableTitle li {
 }
 .modelList{
     border: 1px solid #D6D6D6;
-    width: 153px;
+    width: 149px;
     cursor: pointer;
     display: inline-block;
     margin: 13px 5px;
@@ -703,7 +706,7 @@ tableTitle li {
     height: 206px;
 }
 .modelList a{
-    background: url(../images/nomodel.jpg);
+    background: url(../img/nomodel.png);
     background-size: cover;
 }
 .modelList .modelName{
@@ -711,7 +714,7 @@ tableTitle li {
   
 }
 #print {
-    background: url("../images/print.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    background: url("../img/print.png") no-repeat scroll left center rgba(0, 0, 0, 0);
     font-size: 12px;
     height: 21px;
     line-height: 21px;
@@ -746,7 +749,7 @@ tableTitle li {
     border: 3px solid #bdd5fe;
 }
 #arrowBack{
-    background: url("../images/arrowBack.png") no-repeat scroll left center transparent;
+    background: url("../img/arrowBack.png") no-repeat scroll left center transparent;
     height: 14px;
     padding-left: 37px;
     width: auto;
@@ -817,6 +820,17 @@ tableTitle li {
 #searchModel input#name{
     width: 500px;
 }
+textarea.inputSmall{
+    border: 1px solid #CCCCCC !important;
+    border-radius: 1px !important;
+    height: 65px !important;
+    margin: 2px 0 !important;
+    padding: 2px !important;
+    position: relative;
+    resize: none;
+    width: 142px !important;
+    z-index: 100;
+}
 .inputSmall{
     border: 1px solid #CCCCCC !important;
     border-radius: 1px 1px 1px 1px !important;
@@ -834,21 +848,42 @@ tableTitle li {
     margin:auto;
     overflow: hidden;
 }
+#library .buttons{
+    display: none;
+}
+#library-content{
+    
+    
+}
 #library{
-    border:1px solid red;
+    min-height: 500px;
+    width: 130px;
+    border: 1px solid #FF0000;
+    display: inline-block;
+    margin-right: 10px;
+    max-height: 960px;
+    vertical-align: top;
+    overflow-y: scroll;
+    overflow-x: none;
+    margin-top: 5px;
 }
 #library li{
+    width: 90%;
     display: inline-block;
 }
 #library li img{
-    
+    width: 100%;
+    height: auto;
 }
+#models-gallery{display: inline-block;width: 1028px;vertical-align: top;}
 .group-box{
     border: 1px solid #CCCCCC;
     display: inline-block;
-    height: 368px;
+    height: 314px;
+    margin: 4px 2px;
     text-align: center;
-    width: 370px;
+    vertical-align: top;
+    width: 330px;
 }
 .group-box > li{
     display: inline-block;

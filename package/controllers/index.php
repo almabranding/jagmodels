@@ -8,9 +8,8 @@ class Index extends Controller {
     }
     
     function index() {
-        $this->view->footerMenu=true;
-        $this->view->package=$this->model->getPackage(PACKAGE_ID);
-        $this->view->render('index/index');
+        $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            header('location: ' . $actual_link.'/package');
     }
     
 }

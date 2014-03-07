@@ -17,7 +17,7 @@ class Contacts extends Controller {
     {
         $this->model->pag=$pag;
         $this->view->list=$this->model->contactsToTable($this->model->getContactsList($pag,NUMPP,$order),$order);
-        $this->view->pagination=$this->model->getPaginationCond($pag,NUMPP,'contacts',$this->model->wherepag,'contacts/lista',$order);
+        $this->view->pagination=$this->model->getPaginationCond($pag,NUMPP,DB_PREFIX .'contacts',$this->model->wherepag,'contacts/lista',$order);
         $this->view->search=$this->model->searchForm();
         $this->view->render('contacts/list');  
     }

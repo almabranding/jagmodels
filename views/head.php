@@ -9,12 +9,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title><?=($this->siteName)?$this->siteName.' - TERRAE':'TERRAE';?></title>
+    <title><?=($this->siteName)?$this->siteName.' - JAG Models':'JAG Models';?></title>
     <meta charset="UTF-8"> 
     <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
-    <meta property="og:title" content="Sight Management" />
-    <meta property="og:site_name" content="Sight Management" />
-    <meta property="og:description"content="Sight Management"/>
+    <meta property="og:title" content="JAG Models" />
+    <meta property="og:site_name" content="JAG Models" />
+    <meta property="og:description"content="JAG Models"/>
     <meta property="og:image" content="/public/images/logo.png" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />

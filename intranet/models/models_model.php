@@ -6,6 +6,19 @@ class Models_Model extends Model {
         parent::__construct();
     }
 
+    public function updateFotos() {
+
+////                   $thumb = new thumb();
+////        $mos= $this->db->select('SELECT * FROM ' . DB_PREFIX . 'photos p JOIN ' . DB_PREFIX . 'models_photos mp ON(p.id=mp.photo_id) WHERE mp.main=1');
+////
+////               foreach($mos as $m){
+////            $thumb->loadImage(UPLOAD . $this->getRouteImg($m['img_date']) .$m['file_name']);
+////            $thumb->crop(240, 360);
+////            $thumb->save(UPLOAD . $this->getRouteImg($m['img_date']) . 'thumb_'.$m['file_name']);
+//            
+//               }
+    }
+
     public function searchForm($url = 'models/searchModel') {
         $action = URL . $url;
         $atributes = array(
@@ -39,13 +52,13 @@ class Models_Model extends Model {
         $obt[1] = 'Active';
         $obj->add_options($obt);
         unset($obt);
-        
+
         $form->add('label', 'label_public', 'public', 'Public:');
         $obj = $form->add('select', 'public', 1, array('autocomplete' => 'off'));
         $obt[1] = 'Public';
         $obt[0] = 'Private';
         $obt[2] = 'Both';
-        $obj->add_options($obt,true);
+        $obj->add_options($obt, true);
         unset($obt);
 
         $form->add('label', 'label_notifications', 'notifications', 'Advanced Search');
@@ -65,23 +78,23 @@ class Models_Model extends Model {
 
 
         $form->add('label', 'label_height', 'height', 'Height');
-        $obj = $form->add('text', 'height_from', '', array('autocomplete' => 'off','style' => 'width:50px;float:left'));
-        $obj = $form->add('text', 'height_to', '', array('autocomplete' => 'off','style' => 'width:50px;float:left'));
-        
-        $form->add('label', 'label_shoes', 'shoes', 'Shoes');
-        $obj = $form->add('text', 'shoes_from', '', array('autocomplete' => 'off','style' => 'width:50px;float:left'));
-        $obj = $form->add('text', 'shoes_to', '', array('autocomplete' => 'off','style' => 'width:50px;float:left'));
+        $obj = $form->add('text', 'height_from', '', array('autocomplete' => 'off', 'style' => 'width:50px;float:left'));
+        $obj = $form->add('text', 'height_to', '', array('autocomplete' => 'off', 'style' => 'width:50px;float:left'));
 
-        
-       $form->add('label', 'label_chest', 'chest', 'Chest');
-        $obj = $form->add('text', 'chest_from', '', array('autocomplete' => 'off','style' => 'width:50px;float:left'));
-        $obj = $form->add('text', 'chest_to', '', array('autocomplete' => 'off','style' => 'width:50px;float:left'));
-        
+        $form->add('label', 'label_shoes', 'shoes', 'Shoes');
+        $obj = $form->add('text', 'shoes_from', '', array('autocomplete' => 'off', 'style' => 'width:50px;float:left'));
+        $obj = $form->add('text', 'shoes_to', '', array('autocomplete' => 'off', 'style' => 'width:50px;float:left'));
+
+
+        $form->add('label', 'label_chest', 'chest', 'Chest');
+        $obj = $form->add('text', 'chest_from', '', array('autocomplete' => 'off', 'style' => 'width:50px;float:left'));
+        $obj = $form->add('text', 'chest_to', '', array('autocomplete' => 'off', 'style' => 'width:50px;float:left'));
+
         $form->add('label', 'label_waist', 'waist', 'Waist');
-        $obj = $form->add('text', 'waist_from', '', array('autocomplete' => 'off','style' => 'width:50px;float:left'));
-        $obj = $form->add('text', 'waist_to', '', array('autocomplete' => 'off','style' => 'width:50px;float:left'));
-        
-        
+        $obj = $form->add('text', 'waist_from', '', array('autocomplete' => 'off', 'style' => 'width:50px;float:left'));
+        $obj = $form->add('text', 'waist_to', '', array('autocomplete' => 'off', 'style' => 'width:50px;float:left'));
+
+
         $form->add('label', 'label_hairtype', 'hairtype', 'Hair type');
         $obj = $form->add('select', 'hairtype', '', array('autocomplete' => 'off'));
         foreach ($this->getAtributes('HairType') as $key => $value) {
@@ -101,14 +114,14 @@ class Models_Model extends Model {
         unset($obt);
 
 
-        /*$form->add('label', 'label_mother_agency_id', 'mother_agency_id', 'Mother agency');
-        $obj = $form->add('select', 'mother_agency_id', '', array('autocomplete' => 'off'));
-        foreach ($this->getAgencies() as $key => $value) {
-            $obt[$value['id']] = $value['name'];
-        }
-        if ($obt)
-            $obj->add_options($obt);
-        unset($obt);*/
+        /* $form->add('label', 'label_mother_agency_id', 'mother_agency_id', 'Mother agency');
+          $obj = $form->add('select', 'mother_agency_id', '', array('autocomplete' => 'off'));
+          foreach ($this->getAgencies() as $key => $value) {
+          $obt[$value['id']] = $value['name'];
+          }
+          if ($obt)
+          $obj->add_options($obt);
+          unset($obt); */
 
 
 
@@ -131,7 +144,7 @@ class Models_Model extends Model {
     public function editModelForm($id = null) {
         $action = ($id == null) ? URL . LANG . '/models/add' : URL . LANG . '/models/edit/' . $id;
         if ($id)
-            $model=$this->getModel($id);
+            $model = $this->getModel($id);
         $atributes = array(
             'enctype' => 'multipart/form-data',
         );
@@ -142,8 +155,6 @@ class Models_Model extends Model {
         $form->add('label', 'label_name', 'name', 'Name');
         $form->add('text', 'name', $model['name'], array('autocomplete' => 'off', 'required' => array('error', 'Name is required!')));
 
-        //$form->add('label', 'label_headsheet_name', 'headsheet_name', 'Headsheet name');
-        //$form->add('text', 'headsheet_name', $model['headsheet_name'], array('autocomplete' => 'off'));
 
         $obj = $form->add('radios', 'active', array(
             '1' => 'Active',
@@ -163,19 +174,22 @@ class Models_Model extends Model {
         if ($obt)
             $obj->add_options($obt);
         unset($obt);
-/*
-        $form->add('label', 'label_mother_agency_id', 'mother_agency_id', 'Mother agency');
-        $obj = $form->add('select', 'mother_agency_id', $model['mother_agency_id'], array('autocomplete' => 'off'));
-        foreach ($this->getAgencies() as $key => $value) {
-            $obt[$value['id']] = $value['name'];
-        }
-        if ($obt)
-            $obj->add_options($obt);
-        unset($obt);
-*/
+        /*
+          $form->add('label', 'label_mother_agency_id', 'mother_agency_id', 'Mother agency');
+          $obj = $form->add('select', 'mother_agency_id', $model['mother_agency_id'], array('autocomplete' => 'off'));
+          foreach ($this->getAgencies() as $key => $value) {
+          $obt[$value['id']] = $value['name'];
+          }
+          if ($obt)
+          $obj->add_options($obt);
+          unset($obt);
+         */
 
-        $form->add('label', 'label_height', 'height', 'Height');
-        $form->add('text', 'height', $model['height'], array('autocomplete' => 'off'));
+        $form->add('label', 'label_height_feet', 'height_feet', 'Height Feet');
+        $form->add('text', 'height_feet', $model['height_feet'], array('autocomplete' => 'off'));
+
+        $form->add('label', 'label_height_inches', 'height_inches', 'Height Inches');
+        $form->add('text', 'height_inches', $model['height_inches'], array('autocomplete' => 'off'));
 
         $form->add('label', 'label_hairtype', 'hairtype', 'Hair type');
         $obj = $form->add('select', 'hairtype', $model['hair_type_id'], array('autocomplete' => 'off'));
@@ -212,32 +226,32 @@ class Models_Model extends Model {
         if ($obt)
             $obj->add_options($obt);
         unset($obt);
-/*
-        $form->add('label', 'label_category', 'category', 'Category');
-        $obj = $form->add('select', 'category', $model['category_id'], array('autocomplete' => 'off', 'required' => array('error', 'Category is required!')));
-        foreach ($this->getModelsCategories() as $key => $value) {
-            $obt[$value['id']] = $value['name'];
-        }
-        $obj->add_options($obt);
-        unset($obt);
+        /*
+          $form->add('label', 'label_category', 'category', 'Category');
+          $obj = $form->add('select', 'category', $model['category_id'], array('autocomplete' => 'off', 'required' => array('error', 'Category is required!')));
+          foreach ($this->getModelsCategories() as $key => $value) {
+          $obt[$value['id']] = $value['name'];
+          }
+          $obj->add_options($obt);
+          unset($obt);
 
-        $obj = $form->add('radios', 'public', array(
-            '1' => 'This model shows up in the webpage',
-            '0' => 'This model does NOT show up in the webpage'
-                ), $model['public']);
+          $obj = $form->add('radios', 'public', array(
+          '1' => 'This model shows up in the webpage',
+          '0' => 'This model does NOT show up in the webpage'
+          ), $model['public']);
 
-        $obj = $form->add('radios', 'show_in_headsheet', array(
-            '1' => 'This model shows up in the headsheet',
-            '0' => 'This model does NOT show up in the headsheet'
-                ), $model['show_in_headsheet']);
+          $obj = $form->add('radios', 'show_in_headsheet', array(
+          '1' => 'This model shows up in the headsheet',
+          '0' => 'This model does NOT show up in the headsheet'
+          ), $model['show_in_headsheet']);
 
-        $obj = $form->add('radios', 'featured', array(
-            '1' => 'This model shows up in the featured page',
-            '0' => 'This model does NOT show up in the featured page'
-                ), $model['featured']);
-*/
+          $obj = $form->add('radios', 'featured', array(
+          '1' => 'This model shows up in the featured page',
+          '0' => 'This model does NOT show up in the featured page'
+          ), $model['featured']);
+         */
         foreach ($this->_langs as $lng) {
-            $desc=$this->getModel($id,$lng);
+            $desc = $this->getModel($id, $lng);
             $obj = $form->add('label', 'label_content_' . $lng, 'content_' . $lng, 'Content ' . $lng);
             $obj->set_attributes(array(
                 'style' => 'float:none',
@@ -256,8 +270,7 @@ class Models_Model extends Model {
 
         $action = ($type == 'add') ? URL . LANG . '/models/editImage' : URL . LANG . '/models/editImage/' . $id;
         if ($type == 'edit')
-            foreach ($this->getImageInfo($id) as $value)
-                ;
+            $value = $this->getImageInfo;
 
         $form = new Zebra_Form('addProject', 'POST', $action);
         $pathinfo = pathinfo($value['img']);
@@ -284,44 +297,45 @@ class Models_Model extends Model {
     }
 
     public function getAgency($id) {
-        return $this->db->select('SELECT * FROM '.DB_PREFIX.'mother_agencies WHERE id = :id', array('id' => $id));
+        return $this->db->select('SELECT * FROM ' . DB_PREFIX . 'mother_agencies WHERE id = :id', array('id' => $id));
     }
 
     public function getAgencies() {
-        return $this->db->select('SELECT * FROM '.DB_PREFIX.'mother_agencies order by name');
+        return $this->db->select('SELECT * FROM ' . DB_PREFIX . 'mother_agencies order by name');
     }
 
     public function getBaseds($id) {
-        return $this->db->select('SELECT * FROM '.DB_PREFIX.'based WHERE id = :id', array('id' => $id));
+        return $this->db->select('SELECT * FROM ' . DB_PREFIX . 'based WHERE id = :id', array('id' => $id));
     }
 
     public function getBased() {
-        return $this->db->select('SELECT * FROM '.DB_PREFIX.'based');
+        return $this->db->select('SELECT * FROM ' . DB_PREFIX . 'based');
     }
 
     public function getImageInfo($id) {
-        return $this->db->select('SELECT * FROM '.DB_PREFIX.'photos p JOIN '.DB_PREFIX.'models_photos mp ON(p.id=mp.photo_id) WHERE p.id = :id', array('id' => $id));
+        return $this->db->selectOne('SELECT * FROM ' . DB_PREFIX . 'photos p JOIN ' . DB_PREFIX . 'models_photos mp ON(p.id=mp.photo_id) WHERE p.id = :id', array('id' => $id));
     }
 
-    public function getModel($id,$lang=LANG) {
-        return $this->db->selectOne('SELECT * FROM '.DB_PREFIX.'models m JOIN '.DB_PREFIX.'models_description md ON (md.model_id=m.id)  WHERE m.id=' . $id.' AND md.language_id="'.$lang.'"');
+    public function getModel($id, $lang = LANG) {
+        return $this->db->selectOne('SELECT * FROM ' . DB_PREFIX . 'models m JOIN ' . DB_PREFIX . 'models_description md ON (md.model_id=m.id)  WHERE m.id=' . $id . ' AND md.language_id="' . $lang . '"');
     }
+
     public function getComposite($id) {
-        return $this->db->select('SELECT * FROM '.DB_PREFIX.'models_photos mp join '.DB_PREFIX.'photos p on (mp.photo_id=p.id) WHERE model_id=' . $id . ' AND composite_position!="" order by composite_position');
+        return $this->db->select('SELECT * FROM ' . DB_PREFIX . 'models_photos mp join ' . DB_PREFIX . 'photos p on (mp.photo_id=p.id) WHERE model_id=' . $id . ' AND composite_position!="" order by composite_position');
     }
 
     public function resetComposite($id) {
         $data = array(
             'composite_position' => null
         );
-        $this->db->update(DB_PREFIX.'models_photos', $data, "`model_id` = '{$id}'");
+        $this->db->update(DB_PREFIX . 'models_photos', $data, "`model_id` = '{$id}'");
     }
 
     public function getModelSearch() {
         $models = null;
         //$sql=($_GET['name']!='' || $_GET['active']!='' || $_GET['sex']!='' || $_GET['mother_agency_id']!='' || $_GET['based_in']!='')?'SELECT * FROM models WHERE ':'SELECT * FROM models';
-        $sql1 = 'SELECT * FROM '.DB_PREFIX.'models m JOIN '.DB_PREFIX.'models_photos mp on(m.id=mp.model_id) join '.DB_PREFIX.'photos p on(mp.photo_id=p.id) WHERE mp.main=1 AND';
-        $sql2 = 'SELECT id as model_id FROM '.DB_PREFIX.'models WHERE ';
+        $sql1 = 'SELECT * FROM ' . DB_PREFIX . 'models m JOIN ' . DB_PREFIX . 'models_photos mp on(m.id=mp.model_id) join ' . DB_PREFIX . 'photos p on(mp.photo_id=p.id) WHERE mp.main=1 AND';
+        $sql2 = 'SELECT id as model_id FROM ' . DB_PREFIX . 'models WHERE ';
 
         if ($_GET['name'] != '') {
             $cadena = str_replace(', ', ',', $_GET['name']);
@@ -358,44 +372,63 @@ class Models_Model extends Model {
     }
 
     public function getModelPhotos($id) {
-        $photos=$this->db->select('SELECT * FROM '.DB_PREFIX.'models_photos mp join '.DB_PREFIX.'photos p on(mp.photo_id=p.id) WHERE model_id = :id ORDER by position', array('id' => $id));
-        foreach($photos as $photo){
-            $result[$photo['group']][]=$photo;
+        $photos = $this->db->select('SELECT * FROM ' . DB_PREFIX . 'models_photos mp join ' . DB_PREFIX . 'photos p on(mp.photo_id=p.id) WHERE model_id = :id ORDER by position', array('id' => $id));
+        foreach ($photos as $photo) {
+            $result[$photo['group']][] = $photo;
         }
         return $result;
     }
+    public function getModelPhotosReserva($id) {
+        return $this->db->select('SELECT * FROM ' . DB_PREFIX . 'models_photos mp join ' . DB_PREFIX . 'photos p on(mp.photo_id=p.id) WHERE model_id = :id AND mp.group=0 ORDER by img_date', array('id' => $id));
+    }
 
     public function getAtributes($type) {
-        return $this->db->select('SELECT * FROM '.DB_PREFIX.'attributes WHERE type="' . $type . '"');
+        return $this->db->select('SELECT * FROM ' . DB_PREFIX . 'attributes WHERE type="' . $type . '"');
     }
 
     public function getModels($pag, $numpp) {
         $min = $pag * $numpp - $numpp;
-        $models = $this->db->select('SELECT * FROM '.DB_PREFIX.'models m where active=1 ORDER by m.updated_at DESC LIMIT ' . $min . ',' . $numpp);
+        $models = $this->db->select('SELECT * FROM ' . DB_PREFIX . 'models m ORDER by m.name ASC LIMIT ' . $min . ',' . $numpp);
         foreach ($models as $key => $model) {
-            $photo = $this->db->selectOne('SELECT * FROM '.DB_PREFIX.'models m JOIN '.DB_PREFIX.'models_photos mp on(m.id=mp.model_id) join '.DB_PREFIX.'photos p on(mp.photo_id=p.id) WHERE m.id=' . $model['id'] . ' AND mp.main=1 ORDER by m.updated_at');
+            $photo = $this->db->selectOne('SELECT * FROM ' . DB_PREFIX . 'models m JOIN ' . DB_PREFIX . 'models_photos mp on(m.id=mp.model_id) join ' . DB_PREFIX . 'photos p on(mp.photo_id=p.id) WHERE m.id=' . $model['id'] . ' AND mp.main=1 ORDER by m.updated_at');
             $result[$key]['model_id'] = $model['id'];
             $result[$key]['name'] = $model['name'];
             $result[$key]['photo_id'] = $photo['photo_id'];
             $result[$key]['caption'] = $photo['caption'];
             $result[$key]['file_name'] = $photo['file_name'];
             $result[$key]['img_date'] = $photo['img_date'];
-            $result[$key]['img'] = ($photo)?$this->getRouteImg($photo['img_date']).'thumb_' .$photo['file_name']:'default.png';
+            $result[$key]['img'] = ($photo) ? $this->getRouteImg($photo['img_date']) . 'thumb_' . $photo['file_name'] : 'default.png';
         }
         return $result;
         //return $this->db->select('SELECT * FROM models m JOIN models_photos mp on(m.id=mp.model_id) join photos p on(mp.photo_id=p.id) WHERE mp.main=1 ORDER by m.updated_at DESC LIMIT ' . $min . ',' . $numpp);
     }
 
     public function getModels_photos($photo_id) {
-        return $this->db->select('SELECT * FROM '.DB_PREFIX.'models_photos where photo_id=' . $photo_id);
+        return $this->db->select('SELECT * FROM ' . DB_PREFIX . 'models_photos where photo_id=' . $photo_id);
     }
 
-    public function getAllModels() {
-        return $this->db->select('SELECT * FROM '.DB_PREFIX.'models ORDER by name');
+    public function getAllModelsComplete() {
+        $models = $this->db->select('SELECT * FROM ' . DB_PREFIX . 'models m ORDER by m.position ASC');
+        foreach ($models as $key => $model) {
+            $photo = $this->db->selectOne('SELECT * FROM ' . DB_PREFIX . 'models m JOIN ' . DB_PREFIX . 'models_photos mp on(m.id=mp.model_id) join ' . DB_PREFIX . 'photos p on(mp.photo_id=p.id) WHERE m.id=' . $model['id'] . ' AND mp.main=1 ORDER by m.updated_at');
+            $result[$key]['model_id'] = $model['id'];
+            $result[$key]['name'] = $model['name'];
+            $result[$key]['photo_id'] = $photo['photo_id'];
+            $result[$key]['caption'] = $photo['caption'];
+            $result[$key]['file_name'] = $photo['file_name'];
+            $result[$key]['img_date'] = $photo['img_date'];
+            $result[$key]['img'] = ($photo) ? $this->getRouteImg($photo['img_date']) . 'thumb_' . $photo['file_name'] : 'default.png';
+        }
+        return $result;
+        //return $this->db->select('SELECT * FROM models m JOIN models_photos mp on(m.id=mp.model_id) join photos p on(mp.photo_id=p.id) WHERE mp.main=1 ORDER by m.updated_at DESC LIMIT ' . $min . ',' . $numpp);
+    }
+
+    public function getAllModels($order = 'ORDER by name') {
+        return $this->db->select('SELECT * FROM ' . DB_PREFIX . 'models ' . $order);
     }
 
     public function getModelsCategories() {
-        $res = $this->db->select('SELECT * FROM '.DB_PREFIX.'categories');
+        $res = $this->db->select('SELECT * FROM ' . DB_PREFIX . 'categories');
         foreach ($res as $value) {
             $cat[$value['id']] = array(
                 'id' => $value['id'],
@@ -411,7 +444,8 @@ class Models_Model extends Model {
         $data = array(
             'name' => $_POST['name'],
             'active' => $_POST['active'],
-            'height' => $_POST['height'],
+            'height_feet' => $_POST['height_feet'],
+            'height_inches' => $_POST['height_inches'],
             'shoes' => $_POST['shoes'],
             'sex' => $_POST['sex'],
             'hair_type_id' => $_POST['hairtype'],
@@ -428,19 +462,18 @@ class Models_Model extends Model {
             'updated_at' => $this->getTimeSQL(),
                 //'url' => filter_var(urlencode(strtolower($_POST['name'])), FILTER_SANITIZE_URL),
         );
-        $this->db->update(DB_PREFIX.'models', $data, "`id` = '{$id}'");
+        $this->db->update(DB_PREFIX . 'models', $data, "`id` = '{$id}'");
         unset($data);
         foreach ($this->_langs as $lng) {
-            $data['model_id'] =$id;
+            $data['model_id'] = $id;
             $data['content'] = stripslashes($_POST['content_' . $lng]);
-            $data['language_id'] =$lng; 
-            $exist=$this->db->select("SELECT * FROM ".DB_PREFIX."models_description WHERE model_id=".$id." AND `language_id`='".$lng."'");
-            if(sizeof($exist))
-                $this->db->update(DB_PREFIX.'models_description', $data, "`model_id` = '{$id}' AND `language_id` = '{$lng}'");
+            $data['language_id'] = $lng;
+            $exist = $this->db->select("SELECT * FROM " . DB_PREFIX . "models_description WHERE model_id=" . $id . " AND `language_id`='" . $lng . "'");
+            if (sizeof($exist))
+                $this->db->update(DB_PREFIX . 'models_description', $data, "`model_id` = '{$id}' AND `language_id` = '{$lng}'");
             else
-                $this->db->insert(DB_PREFIX.'models_description', $data);
+                $this->db->insert(DB_PREFIX . 'models_description', $data);
         }
-       
     }
 
     public function add() {
@@ -464,13 +497,13 @@ class Models_Model extends Model {
             'created_at' => $this->getTimeSQL(),
             'updated_at' => $this->getTimeSQL(),
         );
-        $model_id = $this->db->insert(DB_PREFIX.'models', $data);
+        $model_id = $this->db->insert(DB_PREFIX . 'models', $data);
         unset($data);
         foreach ($this->_langs as $lng) {
-            $data['model_id'] =$model_id;
+            $data['model_id'] = $model_id;
             $data['content'] = stripslashes($_POST['content_' . $lng]);
-            $data['language_id'] =$lng;
-            $this->db->insert(DB_PREFIX.'models_description', $data);
+            $data['language_id'] = $lng;
+            $this->db->insert(DB_PREFIX . 'models_description', $data);
         }
         $modelo = $this->getModel($model_id);
         Logs::set("Ha añadido el modelo " . $modelo['name']);
@@ -479,8 +512,26 @@ class Models_Model extends Model {
 
     public function deleteModel($id) {
         $modelo = $this->getModel($id);
-        $this->db->delete(DB_PREFIX.'models', "`id` = {$id}");
+        $this->db->delete(DB_PREFIX . 'models', "`id` = {$id}");
         Logs::set("Ha borrado el modelo " . $id . " " . $modelo['name']);
+    }
+    public function websortByName() {
+        $models = $this->db->select('SELECT * FROM ' . DB_PREFIX . 'models ORDER by name');
+        foreach ($models as $key => $value) {
+            $data = array(
+                'position' => $key
+            );
+            $this->db->update(DB_PREFIX . 'models', $data, "`id` = '{$value['id']}'");
+        }
+    }
+    public function websort() {
+        foreach ($_POST['foo'] as $key => $value) {
+            $data = array(
+                'position' => $key
+            );
+            $this->db->update(DB_PREFIX . 'models', $data, "`id` = '{$value}'");
+        }
+        exit;
     }
 
     public function sort() {
@@ -488,7 +539,18 @@ class Models_Model extends Model {
             $data = array(
                 'position' => $key
             );
-            $this->db->update(DB_PREFIX.'models_photos', $data, "`photo_id` = '{$value}'");
+            $this->db->update(DB_PREFIX . 'models_photos', $data, "`photo_id` = '{$value}'");
+        }
+        exit;
+    }
+
+    public function sortGroup() {
+        foreach ($_POST['foo'] as $key => $value) {
+            $data = array(
+                'position' => $key,
+                'group' => $_POST['group']
+            );
+            $this->db->update(DB_PREFIX . 'models_photos', $data, "`photo_id` = '{$value}'");
         }
         exit;
     }
@@ -504,50 +566,49 @@ class Models_Model extends Model {
             $data = array(
                 'composite_position' => $key
             );
-            $this->db->update(DB_PREFIX.'models_photos', $data, "`photo_id` = '{$value}'");
+            $this->db->update(DB_PREFIX . 'models_photos', $data, "`photo_id` = '{$value}'");
         }
 
         $data = array(
             'updated_at' => $this->getTimeSQL(),
         );
-        $this->db->update(DB_PREFIX.'models', $data, "`id` = '{$_POST['model_id']}'");
+        $this->db->update(DB_PREFIX . 'models', $data, "`id` = '{$_POST['model_id']}'");
         exit;
     }
 
     public function deleteImages() {
-        $cont = 0;
-        $img = $this->db->select('SELECT * FROM '.DB_PREFIX.'models_photos WHERE photo_id = :id', array('id' => $_POST['check'][0]));
-        $modelo = $this->getModel($img['model_id']);
         foreach ($_POST['check'] as $key => $value) {
-            $cont++;
-            $this->delTree(UPLOAD . 'models/' . $this->idToRute($value));
-            $this->db->delete(DB_PREFIX.'photos', "`id` = {$value}");
-            $this->db->delete(DB_PREFIX.'models_photos', "`photo_id` = {$value}");
+            $img = $this->getImageInfo($value);
+            @unlink(UPLOAD . $this->getRouteImg($img['img_date']) . $img['file_name']);
+            $this->db->delete(DB_PREFIX . 'photos', "`id` = {$value}");
+            $this->db->delete(DB_PREFIX . 'models_photos', "`photo_id` = {$value}");
         }
-        Logs::set("Ha borrado " . $cont . " fotos del modelo " . $modelo['name']);
+        $modelo = $this->getModel($img['model_id']);
+        Logs::set("Ha borrado " . $key . " fotos del modelo " . $modelo['name']);
         exit;
     }
 
     public function deleteImage($id) {
-        $this->delTree(UPLOAD . 'models/' . $this->idToRute($id));
-        $this->db->delete(DB_PREFIX.'photos', "`id` = {$id}");
-        $this->db->delete(DB_PREFIX.'models_photos', "`photo_id` = {$id}");
-        $img = $this->db->select('SELECT * FROM '.DB_PREFIX.'models_photos WHERE photo_id = :id', array('id' => $id));
+        $img = $this->getImageInfo($id);
+        @unlink(UPLOAD . $this->getRouteImg($img['img_date']) . $img['file_name']);
+        $this->db->delete(DB_PREFIX . 'photos', "`id` = {$id}");
+        $this->db->delete(DB_PREFIX . 'models_photos', "`photo_id` = {$id}");
         $modelo = $this->getModel($img['model_id']);
         Logs::set("Ha borrado una foto del modelo " . $modelo['name']);
-        return $img[0]['model_id'];
+        return $img['model_id'];
     }
 
     public function selectHeadsheet() {
+        echo $_POST['model_id'];
         foreach ($_POST['check'] as $key => $value) {
             $data = array(
                 'main' => 0
             );
-            $this->db->update(DB_PREFIX.'models_photos', $data, "`model_id` = '{$_POST['model_id']}'");
+            $this->db->update(DB_PREFIX . 'models_photos', $data, "`model_id` = '{$_POST['model_id']}'");
             $data = array(
                 'main' => 1
             );
-            $this->db->update(DB_PREFIX.'models_photos', $data, "`photo_id` = '{$value}'");
+            $this->db->update(DB_PREFIX . 'models_photos', $data, "`photo_id` = '{$value}'");
         }
 
         $modelo = $this->getModel($_POST['model_id']);
@@ -570,30 +631,37 @@ class Models_Model extends Model {
             'visibility' => $_POST['visibility'],
             'updated_at' => $this->getTimeSQL(),
         );
-        $this->db->update(DB_PREFIX.'models_photos', $data, "`photo_id` = '{$id}'");
+        $this->db->update(DB_PREFIX . 'models_photos', $data, "`photo_id` = '{$id}'");
         return $Models_photos['model_id'];
     }
 
     public function saveInputs() {
-        foreach ($_POST['visibility'] as $key => $value) {
+        foreach ($_POST['note'] as $key => $value) {
             $data = array(
-                'visibility' => $value
+                'note' => $value
             );
-            $this->db->update(DB_PREFIX.'models_photos', $data, "`photo_id` = '{$key}'");
+            $this->db->update(DB_PREFIX . 'packed_models', $data, "`model_id` = '{$key}' AND package_id='{$_POST['package_id']}'");
         }
-        foreach ($_POST['photographer'] as $key => $value) {
-            $data = array(
-                'photographer' => $value
-            );
-            $this->db->update(DB_PREFIX.'photos', $data, "`id` = '{$key}'");
-        }
+        /* foreach ($_POST['visibility'] as $key => $value) {
+          $data = array(
+          'visibility' => $value
+          );
+          $this->db->update(DB_PREFIX . 'models_photos', $data, "`photo_id` = '{$key}'");
+          }
+          foreach ($_POST['photographer'] as $key => $value) {
+          $data = array(
+          'photographer' => $value
+          );
+          $this->db->update(DB_PREFIX . 'photos', $data, "`id` = '{$key}'");
+          } */
     }
-    public function addPhoto($id,$img){
+
+    public function addPhoto($id, $img) {
         $data = array(
             'model_id' => $id,
             'photo_id' => $img['id']
         );
-        $suggestion_id = $this->db->insert(DB_PREFIX.'models_photos', $data);
+        $suggestion_id = $this->db->insert(DB_PREFIX . 'models_photos', $data);
     }
 
 }

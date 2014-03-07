@@ -6,12 +6,12 @@ class Log_Model extends Model {
     }
     
     public function getLog($id) {
-        $role=$this->db->select("SELECT * FROM log WHERE id=".$id);
+        $role=$this->db->select("SELECT * FROM ".DB_PREFIX ."log WHERE id=".$id);
         return $role[0]['name'];
     }
     public function getLogList($pag,$maxpp,$order) {
         $min=$pag*$maxpp-$maxpp;
-        return $this->db->select("SELECT * FROM log ORDER by ".$order." LIMIT ".$min.",".$maxpp);  
+        return $this->db->select("SELECT * FROM ".DB_PREFIX ."log ORDER by ".$order." LIMIT ".$min.",".$maxpp);  
     }
     public function logToTable($lista,$order) {
         $order=  explode(' ', $order);
@@ -42,10 +42,10 @@ class Log_Model extends Model {
         return $b;
     }
     public function getUser($id) {
-        $role=$this->db->select("SELECT * FROM users WHERE id=".$id);
-        return $role[0]['firstname'].' '.$role[0]['lastname'];
+        $role=$this->db->select("SELECT * FROM ".DB_PREFIX ."users WHERE id=".$id);
+        return $role[0]['name'];
     }
     public function deleteLog(){
-        $this->db->delete('log', "`id` != 0");
+        $this->db->delete(DB_PREFIX.'log', "`id` != 0");
     }
 }

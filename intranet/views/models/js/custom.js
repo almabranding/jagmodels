@@ -1,43 +1,80 @@
-function updateDragItem() {
-    var a = $("#compositeBox li input").serialize();
-    var model_id = $("#model_id").val();
-    $.post(ROOT + 'models/compositeSort', a + '&action=updateOrder&model_id=' + model_id).done(function(data) {
-    });
-}
+/*function updateDragItem() {
+ var a = $("#compositeBox li input").serialize();
+ var model_id = $("#model_id").val();
+ $.post(ROOT + 'models/compositeSort', a + '&action=updateOrder&model_id=' + model_id).done(function(data) {
+ });
+ }
+ function updateListItem(itemId, newStatus) {
+ var sorted = $("#sortable").sortable("serialize");
+ $.post(ROOT + 'models/sort', sorted + '&action=updateOrder').done(function(data) {
+ });
+ }*/
 function updateListItem(itemId, newStatus) {
     var sorted = $("#sortable").sortable("serialize");
-    $.post(ROOT + 'models/sort', sorted + '&action=updateOrder').done(function(data) {
+    $.post(ROOT + 'models/websort', sorted + '&action=updateOrder').done(function(data) {
+    });
+}
+function updateGroup(group) {
+    var sorted = '';
+    var id = group.attr('rel');
+    group.find('.imgmove').each(function(index) {
+        sorted = sorted + 'foo[]=' + $(this).attr('rel') + '&';
+    });
+    sorted = sorted + 'group=' + id + '&';
+    $.post(ROOT + 'models/sortGroup', sorted + 'action=updateOrder').done(function(data) {
     });
 }
 $(document).ready(function() {
     var $model_id = $('#model_id').val();
+
     $('.imgmove').draggable({
         revert: 'invalid',
+        appendTo: 'body', 
+        helper: 'clone',
+        connectToSortable: ".group-box",
+        refreshPositions: true ,
         stop: function() {
-            // Make it properly draggable again in case it was cancelled
             $(this).draggable('option', 'revert', 'invalid');
         }
     });
-
     $('.group-box').droppable({
         drop: function(event, ui) {
             var $this = $(this);
-            // Check number of elements already in
-            if ($this.find('.imgmove').length >= 2) {
-                // Cancel drag operation (make it always revert)
+            var parent=false;
+            console.log();
+            $this.find('.imgmove').each(function(){
+                if($(this).attr('rel')===ui.draggable.attr('rel')) parent=true;
+            });
+            if ($this.find('.imgmove').length >= 2 && !parent) {
                 ui.draggable.draggable('option', 'revert', true);
                 return;
             }
-
-            // Put dragged item into container
             ui.draggable.appendTo($this).css({
                 top: '0px',
                 left: '0px'
             });
-
-            // Do whatever you want with ui.draggable, which is a valid dropped object
+            updateGroup($this);
+        },
+        out: function() {
         }
     });
+  /*  $('.group-box').on('mouseover', function() {
+        if ($(this).find('.imgmove').length == 2) {
+            console.log(1);
+            $('.group-box').droppable("disable");
+        }
+    });
+    $('.group-box').on('mouseout', function() {
+        if ($(this).find('.imgmove').length == 2) {
+            console.log(2);
+            $('.group-box').droppable("enable");
+        }
+    });
+    $('.group-box').sortable({
+        update: function(event, ui) {
+            updateGroup($(this));
+        }
+    });*/
     $('#library').droppable({
         drop: function(event, ui) {
             var $this = $(this);
@@ -45,25 +82,17 @@ $(document).ready(function() {
                 top: '0px',
                 left: '0px'
             });
+            updateGroup($this);
         }
     });
-    /*$("#compositeBox, #draggable").sortable({
-     connectWith: ".compositeBox,.sortable",
-     update: function(event, ui) {
-     updateDragItem();
-     }
-     });*/
+    $('#websortByName').on('click', function() {
+        $.post(ROOT + 'ES/models/websortByName').done(function(data) {
+            location.reload();
+        });
+    });
     $('.listImage').on('click', function() {
         var $checkbox = $(this).parent().children('.checkFoto');
         $checkbox.prop('checked', !$checkbox.prop('checked'));
-    });
-    $('.deleteSingle').on('click', function() {
-        var $lista = $(this).parent().children('.checkFoto').val();
-        $lista = 'check%5B%5D=' + $lista;
-        if (confirm('¿Estas seguro?'))
-            $.post(ROOT + 'ES/models/deleteImages', $lista).done(function(data) {
-                location.reload();
-            });
     });
     $('#deleteImage').on('click', function() {
         var $listaImages = $('.checkFoto:checked').serialize();
@@ -71,19 +100,6 @@ $(document).ready(function() {
             $.post(ROOT + 'ES/models/deleteImages', $listaImages).done(function(data) {
                 location.reload();
             });
-    });
-    $('.deleteModel').on('click', function() {
-        var $listaImages = $(this).parent().attr('rel');
-        if (confirm('¿Estas seguro?'))
-            $.post(ROOT + 'ES/models/deleteModel/' + $listaImages).done(function(data) {
-                location.reload();
-            });
-    });
-    $('#saveInputs').on('click', function() {
-        var $listaInputs = $(':input').serialize();
-        $.post(ROOT + 'ES/models/saveInputs', $listaInputs).done(function(data) {
-            alert("Changes has been saved");
-        });
     });
     $('#allSelect').on('click', function() {
         var $checkbox = $('.checkFoto');

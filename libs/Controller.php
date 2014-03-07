@@ -17,8 +17,6 @@ class Controller {
             $modelName = $name . '_Model';
             $this->model = new $modelName();
         }  
-        $this->view->user = $this->model->getUser(Session::get('userid'));
-        $this->loadLang($name);
         
     }
     public function loadSingleModel($name, $modelPath = 'model/') {
@@ -30,30 +28,26 @@ class Controller {
             return $model;
         }        
     }
-    public function loadLang($_langs,$name=null) {
-        $this->model->_langs=$_langs;
-        $this->view->_langs =$_langs;
-       // public function loadLang($name, $langPath = 'lang/EN/') {
+    public function loadLang($_allowLang,$name=null) {
         $langPath='lang/'.LANG.'/';
         require $langPath .'default.php';
         $path = $langPath . $name.'.php';
         if (file_exists($path)) {
             require $path;
         }
-        $this->model->setLang(LANG);
-        $this->view->lang = $lang;
-        $this->model->lang = $lang;
+        $this->setGlobal('_allowLang',$_allowLang);
+        $this->setGlobal('lang',$lang);
     
     }
-    /*public function loadLang($name, $langPath = 'lang/EN/') {
-        $langPath='lang/'.LANG.'/';
-        require $langPath .'default.php';
-        $path = $langPath . $name.'.php';
-        if (file_exists($path)) {
-            require $path;
-        }
-        $this->model->setLang(LANG);
-        $this->view->lang = $lang;
-    }*/
+    public function setGlobal($var, $value) {
+        $this->view->$var = $value;
+        $this->model->$var = $value;
+    }
+    public function setModel($var, $value) {
+        $this->model->$var = $value;
+    }
+    public function setView($var, $value) {
+        $this->view->$var = $value;
+    }
 
 }

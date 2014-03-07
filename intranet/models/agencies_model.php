@@ -23,10 +23,10 @@ class Agencies_Model extends Model {
         return $form;
     }
     public function getAgency($id) {
-        return $this->db->select("SELECT * FROM mother_agencies WHERE id=".$id);  
+        return $this->db->select("SELECT * FROM ".DB_PREFIX . "agencies WHERE id=".$id);  
     }
     public function getAgenciesList($order='name') {
-        return $this->db->select("SELECT * FROM mother_agencies ORDER by ".$order);  
+        return $this->db->select("SELECT * FROM ".DB_PREFIX . "agencies ORDER by ".$order);  
     }
     public function agenciesToTable($lista,$order) {
         $order=  explode(' ', $order);
@@ -61,7 +61,7 @@ class Agencies_Model extends Model {
             'updated_at' => $this->getTimeSQL(),
             'created_at' => $this->getTimeSQL()
         );
-        return $this->db->insert('mother_agencies', $data);
+        return $this->db->insert(DB_PREFIX . 'agencies', $data);
        
     }
     public function edit($id){
@@ -69,10 +69,10 @@ class Agencies_Model extends Model {
             'name' => $_POST['name'],
             'updated_at' => $this->getTimeSQL(),
         );
-        $this->db->update('mother_agencies', $data, 
+        $this->db->update(DB_PREFIX . 'agencies', $data, 
             "`id` = '{$id}'");
     }
     public function delete($id){
-         $this->db->delete('mother_agencies', "`id` = {$id}");
+         $this->db->delete(DB_PREFIX . 'agencies', "`id` = {$id}");
     }   
 }

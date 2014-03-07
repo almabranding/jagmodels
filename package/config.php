@@ -1,7 +1,7 @@
 <?php
 // Always provide a TRAILING SLASH (/) AFTER A PATH
 define('LIBS', 'libs/');
-define('TEMPDIR', '/models/');
+define('TEMPDIR', '/');
 //$_SERVER['DOCUMENT_ROOT']='/home/borndevelopments.com/web/models';
 define('URL', 'http://'.$_SERVER['HTTP_HOST'].'/');
 
@@ -10,22 +10,15 @@ define('CACHE', ROOT.'../cache/');
 $url=explode("package.",$_SERVER['HTTP_HOST']);
 array_shift($url);
 define('DOMAIN', $url[0].'/'); 
-define('WEB', 'http://models.'.DOMAIN); 
+define('WEB', 'http://siteground.'.DOMAIN); 
 define('PACKAGEURL', 'http://package.'.DOMAIN); 
-
-$url=explode(".",$_SERVER['HTTP_HOST']);
-$sumdomain=array_shift($url);
-switch($sumdomain){
-    case 'models':
-        $red=explode("/",$_SERVER['REQUEST_URI']);
-        header('location: '.WEB.'gallery/model/'.$red[2]);
-}
 
 define('DB_TYPE', 'mysql');
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'almamodels');
-define('DB_USER', 'almabranding');
-define('DB_PASS', 'branding');
+define('DB_NAME', 'jagmodel_site');
+define('DB_USER', 'jagmodel_user');
+define('DB_PASS', '&xvZaToZc2Lz');
+define('DB_PREFIX', 'alma_'); 
 
 // The sitewide hashkey, do not change this because its used for passwords!
 // This is for other hash keys... Not sure yet

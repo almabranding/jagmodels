@@ -47,16 +47,17 @@ function showPop(id) {
     $('#' + id).css('display', 'block');
 }
 
-$(document).ready(function() {
-
-    $("#modelList").change(function() {
-        var coma = "";
-        if ($('#name').val() != "")
-            coma = ', ';
-        $('#name').val($('#name').val() + coma + $(this).val());
-    });
-
-
-});
+//$(document).ready(function() {
+//    $("#modelList").change(function() {
+//        var coma = "";
+//        if ($('#name').val() != "")
+//            coma = ', ';
+//        $('#name').val($('#name').val() + coma + $(this).val());
+//    });
+//});
+function secureMsg(Msg,route){
+    if(confirm(Msg))
+            location.href = ROOT+route;
+}
 
 

@@ -51,5 +51,9 @@ class Model {
     public function getCategories($id,$where) {
         return $this->db->select('SELECT c.name FROM packed_models pm JOIN models m on(pm.model_id=m.id) JOIN categories c on(c.id=m.category_id) WHERE package_id='.$id.' and '.$where);
     }
+    public static function getRouteImg($date) {
+        $timestamp = strtotime($date);
+        return date("Y",$timestamp).'/'.date("m",$timestamp).'/';
+     }
 
 }

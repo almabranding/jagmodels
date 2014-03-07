@@ -53,6 +53,26 @@
     font-weight: bold;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Maga Medium';
+    src: url('../font/Maga Medium.eot');
+    src: url('../font/Maga Medium.eot?#iefix') format('embedded-opentype'),
+        url('../font/Maga Medium.woff') format('woff'),
+        url('../font/Maga Medium.ttf') format('truetype'),
+        url('../font/Maga Medium.svg#Maga Medium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Maga Medium';
+    src: url('../font/itcavantgardestd-bk-webfont.eot');
+    src: url('../font/itcavantgardestd-bk-webfont.eot?#iefix') format('embedded-opentype'),
+        url('../font/itcavantgardestd-bk-webfont.woff') format('woff'),
+        url('../font/itcavantgardestd-bk-webfont.ttf') format('truetype'),
+        url('../font/itcavantgardestd-bk-webfont.svg#itcavantgardestd-bk-webfont') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
 /*Elementos*/
 *{
     margin: 0;
@@ -72,13 +92,12 @@ a{
     text-decoration: none;
 }
 img{
-    display: block;
     clear: none;
     margin: 0;
     padding: 0;
 }
 body {
-    background:  #fff;
+    background:  none repeat scroll 0 0 #F3F3F3;
     color:#777777;
     font-size:13px;
     text-align:center;
@@ -146,7 +165,6 @@ body{
     position: relative;
 }
 #gallery_wrapper {   
-    background: #fff;
     background-size: cover;
     margin: auto;
     overflow: hidden;
@@ -155,17 +173,9 @@ body{
     width: 100%;
     height: 100%;
 }
-footer{  
-    bottom: 0;
-    position: absolute;
-    width: 100%;
-    z-index: 19;
-}
-#footer a img{
-    margin: auto;
-}
+
 .preload{
-   background: url("../images/preload.gif") no-repeat scroll 0 0px transparent;
+   background: url("../img/preload.gif") no-repeat scroll 0 0px transparent;
     left: 100px;
     position: absolute;
     top: 100px;
@@ -279,7 +289,7 @@ form .btn {
     font-size: 30px;
 }
 #header a.logo {
-    background: url("../images/logo.png") no-repeat scroll center bottom transparent;
+    background: url("../img/logo.png") no-repeat scroll center bottom transparent;
     display: block;
     height: 133px;
     width: 376px;
@@ -328,7 +338,7 @@ input[type="submit"]{
     padding: 0;
 }
 #header #language_switcher ul li span {
-    background: url("../images/langArrow.png") no-repeat scroll right center #EDEDED !important;
+    background: url("../img/langArrow.png") no-repeat scroll right center #EDEDED !important;
     padding: 0 21px;
 }
 #header #language_switcher ul li ul li{
@@ -419,19 +429,6 @@ input[type="submit"]{
 #header #menu ul li:hover ul li:hover{
     
 }
-#footer_wrapper {
-    background: none repeat scroll 0 0 #333333;
-    bottom: 0;
-    min-height: 70px;
-    position: relative;
-    width: 100%;
-}
-#footer_wrapper #footer {
-    margin: auto;
-    padding-top: 6px;
-    text-align: center;
-    width: 97%;
-}
 .modelListInfo{
     text-align: center;
     text-transform: capitalize;
@@ -449,20 +446,19 @@ input[type="submit"]{
     margin: 0 34px 0 0;
     color:#858585;
 }
-#modelsList .item{
-    margin: 5px 0;
-    overflow: hidden;
-    position: relative;
+.modelsList #masorny .item {
+    margin: 0 10px;
 }
 #modelsList.special .item{
 /*    height: 290px;*/
     height: 207px;
 }
-#modelsList .item .imgbox{
-    background: url("/uploads/models/thumb_111698.jpg") repeat-x scroll 0 0 / cover  #EFEFEF;
-    height: 205px;
-    width: 145px;
+.modelsList .item .imgbox {
+    height: 360px;
+    margin-bottom: 20px;
+    overflow: hidden;
     position: relative;
+    width: 240px;
 }
 #modelsList .item .imgbox img{
     height: 100%;
@@ -494,7 +490,7 @@ input[type="submit"]{
     width: 100%;
 }
 #modelsList,#pageContent{
-    background: none repeat scroll 0 0 / cover #fff;
+    background: none repeat scroll 0 0 / cover transparent;
     flex: 1;
 }
 #modelsList #barAttributes{
@@ -504,7 +500,7 @@ input[type="submit"]{
     width: 100%;
 }
 #modelsList #barAttributes #search #tags{
-    background: url("../images/langArrow.png") no-repeat scroll right center #EDEDED !important;
+    background: url("../img/langArrow.png") no-repeat scroll right center #EDEDED !important;
     padding: 0 21px;
     border: 1px solid #CAC8C8;
     background: none repeat scroll 0 0 #EDEDED;
@@ -528,7 +524,7 @@ input[type="submit"]{
     vertical-align: middle;
 }
 #modelsList #barAttributes #abc .star{
-    background: url("../images/star.png") no-repeat scroll center top transparent;
+    background: url("../img/star.png") no-repeat scroll center top transparent;
     height: 14px;
     width: 23px;
 }
@@ -538,6 +534,7 @@ input[type="submit"]{
 }
 #header{
     background: #fff;
+    box-shadow: 0 4px 2px -2px #CCCCCC;
 }
 #header_wrapper{
     position: relative;
@@ -624,7 +621,7 @@ input[type="submit"]{
     height: 100px;
   }
   #arrowBack {
-    background: url("../images/arrowBack.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    background: url("../img/arrowBack.png") no-repeat scroll left center rgba(0, 0, 0, 0);
     height: 16px;
     margin: 0 0 9px;
     padding-left: 37px;
@@ -641,7 +638,7 @@ input[type="submit"]{
     width: 97%;
 }
 #addFav {
-     background: url("../images/addFav.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+     background: url("../img/addFav.png") no-repeat scroll left center rgba(0, 0, 0, 0);
     cursor: pointer;
     float: left;
     font-size: 12px;
@@ -661,7 +658,7 @@ input[type="submit"]{
      cursor: pointer;
 }
 #sendMail{
-    background: url("../images/sendMail.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    background: url("../img/sendMail.png") no-repeat scroll left center rgba(0, 0, 0, 0);
     float: right;
     font-size: 12px;
     height: 21px;
@@ -674,7 +671,7 @@ input[type="submit"]{
     width: auto;
 }
 #zip {
-    background: url("../images/zip.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    background: url("../img/zip.png") no-repeat scroll left center rgba(0, 0, 0, 0);
     float: right;
     font-size: 12px;
     height: 21px;
@@ -687,7 +684,7 @@ input[type="submit"]{
     margin-right: 20px;
 }
 #print {
-    background: url("../images/print.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    background: url("../img/print.png") no-repeat scroll left center rgba(0, 0, 0, 0);
     font-size: 12px;
     float:right;
     height: 21px;
@@ -722,13 +719,13 @@ input[type="submit"]{
     text-align: center;
 }
 #flipbook{
-    background: url("../images/strip.png") repeat-x scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/strip.png") repeat-x scroll center top rgba(0, 0, 0, 0);
     margin: auto;
     padding: 50px 0;
     width: 100%;
 }
 #linkTo{
-    background: url("../images/arrowTo.png") no-repeat scroll right center rgba(0, 0, 0, 0);
+    background: url("../img/arrowTo.png") no-repeat scroll right center rgba(0, 0, 0, 0);
     height: 16px;
     margin: 0 0 9px;
     padding-right: 37px;
@@ -763,7 +760,7 @@ input[type="submit"]{
     color:#858585;
 }
 .socialIco{
-    background: url("../images/socialIco.png") no-repeat rgba(0, 0, 0, 0);
+    background: url("../img/socialIco.png") no-repeat rgba(0, 0, 0, 0);
     height: 30px;
     margin: 0 9px 0 0;
     display: inline-block;
@@ -780,7 +777,7 @@ input[type="submit"]{
     background-position: -70px 0px;
 }
 #cover_wrapper{
-    background: url("../images/coverBg.jpg") no-repeat scroll 0 0  rgba(0, 0, 0, 0);
+    background: url("../img/coverBg.jpg") no-repeat scroll 0 0  rgba(0, 0, 0, 0);
     background-size: cover !important;
 /*    margin-bottom: -145px;
     min-height: 100%;*/
@@ -791,32 +788,93 @@ input[type="submit"]{
     margin: auto;
     width: 100%;
 }
-#logoBoxFooter{
+#footer{
+}
+#footer .container{}
+#footer p{
+    color:#838587;
+}
+#footer h1{
+    color:#004066;
+    font-size: 36px;
+}
+#footer .footer-list > li{
+    display: inline-block;
+    margin: 10px 0;
+    padding: 0 1%;
+    text-align: left;
+    vertical-align: top;
+    width: 21%;
+}
+#footer .footer-list-a li{
     display: block;
-    float: left;
-    height: 44px;
-    margin: 8px 50px 0 0;
-    width: 142px;
+    margin: 0;
 }
-#logoBoxFooter img{
-    width: 100%
+
+footer{  
+    background: none repeat scroll 0 0 #000000;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 19;
+    padding: 9px 0 7px;
 }
-#footerContact{
-    color: #6C6C6C;
-    float: right;
-    font-size: 13px;
-    margin-top: 0;
-    text-align: right;
+.socialIcons li {display: inline-block;}
+.socialIcons li div {
+    background: url("../img/socialIcons.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 16px;
+    margin: 0 6px;
+    width: 25px;
 }
-#footerContact li{
-    display:block;
+.socialIcons #fb {
+    background-position: 13px 0;
 }
-#footerContact a{
-    color:#858ea7;
+.socialIcons #tw {
+    background-position: -27px 0;
+}
+.socialIcons #ins {
+    background-position: -65px 0;
+}
+.socialIcons #yt {
+    background-position: -68px 0;
+}
+#footer_list li{ display: inline-block;padding: 0 5px 0 0;}
+#footer a img{
+    margin: auto;
+}
+#footer_list,.socialIcons{
+    width: 50%;
+    display: inline-block;
 }
 #menu_separator {
-    background: url("../images/strip.png") repeat-x scroll center top rgba(0, 0, 0, 0);
+    background: url("../img/strip.png") repeat-x scroll center top transparent;
     height: 10px;
     margin: 0 auto 15px;
     width: 100%;
 }
+
+/*GALLERY*/
+#modelGallery {
+    margin: 0 auto 150px;;
+    width: 87%;
+    max-width: 931px;
+}
+
+.banner-box.multiple ul{text-align: center}
+.banner-box.multiple li{width: 50%;display: inline-block;vertical-align: top;}
+.banner-box.multiple li:first-child{text-align: right}
+.banner-box.multiple li:last-child{text-align: left}
+.banner-box li{}
+.banner-box li img{max-height: 500px;width: auto;}
+.modelListInfo h2{
+    font-family: 'Maga Medium';
+    border-bottom: 1px solid #C4C4C4;
+    font-size: 33px;
+    margin: 30px auto 0;
+    width: 38%;
+    color:#000000;
+}
+.modelListInfo .modelExtraInfo{text-align: center;margin-top: 20px;font-size: 14px;color:#000000;}
+.modelListInfo .modelExtraInfo li{display: inline-block;padding-right:20px;;margin: 0 20px 0 0;border-right: 1px solid black;}
+.modelListInfo .modelExtraInfo li:last-child{border: none;}
+.modelListInfo .modelExtraInfo .attr{text-transform: capitalize;}

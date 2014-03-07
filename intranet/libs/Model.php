@@ -23,6 +23,16 @@ class Model {
         if($column==null) return $consulta;
         else return $consulta[0][$column];
     }
+    public function loadLang($name=null) {
+        $langPath='lang/'.LANG.'/';
+        require $langPath .'default.php';
+        $path = $langPath . $name.'.php';
+        if (file_exists($path)) {
+            require $path;
+        }
+        $this->lang = $lang;
+    
+    }
     function delTree($dir) { 
         if(!is_dir($dir)) return false;
         $files = array_diff(scandir($dir), array('.','..')); 
@@ -44,14 +54,12 @@ class Model {
         return date("Y-m-d G:i:s");
     }
     public function getPagination($now,$numpp,$table,$url,$order=null){
-        $sth = $this->db->prepare("SELECT * FROM ".$table);
-        $sth->execute();
-        $sth->fetch();
-        $count =  $sth->rowCount();
+        $sth = $this->db->select("SELECT * FROM ".$table);
+        $count =  sizeof($sth);
         $pagination['url']=$url;
         $pagination['min']=1;
         $pagination['now']=(int)$now;
-        $pagination['max']=(int)($count/$numpp);
+        $pagination['max']=ceil($count/$numpp);
         $pagination['order']=$order;
         return $pagination;
     }
@@ -63,7 +71,7 @@ class Model {
         $pagination['url']=$url;
         $pagination['min']=1;
         $pagination['now']=(int)$now;
-        $pagination['max']=(int)($count/$numpp);
+        $pagination['max']=ceil($count/$numpp);
         $pagination['order']=$order;
         return $pagination;
     }

@@ -16,14 +16,14 @@
 <body  class="login-page">
     <div id="login-box">
         <div id="header">
-            <a href="index.php" > <div id="logo" style="margin:auto;"><img src="<?= URL ?>/public/images/logo.png"></div></a>
+            <a href="index.php" > <div id="logo" style="margin:auto;"><img src="<?= URL ?>public/images/logo.png"></div></a>
             <div id="contact">
                 <a href="#">What is modelpack</a> | <a href="#">Contact?</a>
             </div>
         </div>
         <div class="form-box">
             <H2>Access</H2>
-            <form method="post" action="<?= URL ; ?>/users/run" >
+            <form method="post" action="<?= URL ; ?>users/run" >
                 <div id="login-box-name" style="">User:</div><div id="login-box-field" style=""><input name="login" class="form-login" title="Username" value="" size="30" maxlength="2048" /></div>
                 <div id="login-box-name">Password:</div><div id="login-box-field"><input name="password" type="password" class="form-login" title="Password" value="" size="30" maxlength="2048" /></div>
                 <br />

@@ -21,7 +21,7 @@ class Packages extends Controller {
         $this->model->pag=$pag;
         $this->view->searchModel=$this->model->searchForm();
         $this->view->list=$this->model->packageToTable($this->model->getPackagesList($pag,NUMPP,$order),$order);
-        $this->view->pagination=$this->model->getPaginationCond($pag,NUMPP,'packages',$this->model->wherepag,'packages/lista',$order);
+        $this->view->pagination=$this->model->getPaginationCond($pag,NUMPP,DB_PREFIX .'packages',$this->model->wherepag,'packages/lista',$order);
         $this->view->render('packages/list');  
     }
     public function searchResult() 
@@ -34,25 +34,24 @@ class Packages extends Controller {
     {
         $this->model->pag=$pag;
         $this->view->list=$this->model->packageToTable($this->model->getPackagesArchived($pag,NUMPP,$order));
-        $this->view->pagination=$this->model->getPaginationCond($pag,NUMPP,'packages','WHERE archived=1','packages/archived',$order);
+        $this->view->pagination=$this->model->getPaginationCond($pag,NUMPP,DB_PREFIX .'packages','WHERE archived=1','packages/archived',$order);
         $this->view->render('packages/list');  
     }public function selected($pag=1,$order='name') 
     {
         $this->model->pag=$pag;
         $this->view->list=$this->model->packageToTable($this->model->getPackagesSelected($pag,NUMPP,$order));
-        $this->view->pagination=$this->model->getPaginationCond($pag,NUMPP,'packages','WHERE selected=1','packages/selected',$order);
+        $this->view->pagination=$this->model->getPaginationCond($pag,NUMPP,DB_PREFIX .'packages','WHERE selected=1','packages/selected',$order);
         $this->view->render('packages/list');  
     }
     public function editCreatePackage($id=null) 
     {
-        $type=(!$id)?'add':'edit';
-        $this->view->form=$this->model->packageForm($type,$id);
+        $this->view->form=$this->model->packageForm($id);
         $this->view->render('packages/editpackage');  
     }
     public function delivers($pag=1,$order='created_at DESC'){
         $this->model->pag=$pag;
         $this->view->list=$this->model->deliversToTable($this->model->getDelivers($pag,NUMPP,$order),$order);
-        $this->view->pagination=$this->model->getPaginationCond($pag,NUMPP,'package_deliveries',$this->model->wherepag,'packages/delivers',$order);
+        $this->view->pagination=$this->model->getPaginationCond($pag,NUMPP,DB_PREFIX .'package_deliveries',$this->model->wherepag,'packages/delivers',$order);
         $this->view->render('packages/delivers');
     }
     public function addModel($package=null,$pag=1) 
@@ -61,7 +60,7 @@ class Packages extends Controller {
         $models=$this->loadSingleModel('models');
         $this->view->models=$models->getModels($pag,NUMPP);
         $this->view->searchModel=$models->searchForm('/packages/searchModel/'.$package);
-        $this->view->pagination=$this->model->getPagination($pag,NUMPP,'models','packages/addModel/'.$package);
+        $this->view->pagination=$this->model->getPagination($pag,NUMPP,DB_PREFIX .'models','packages/addModel/'.$package);
         $this->view->categories=$models->getModelsCategories();
         $this->view->modelsPackage=$this->model->modelsPackage($package);
         $this->view->render('packages/listModels');
@@ -101,6 +100,12 @@ class Packages extends Controller {
     {
         $id=$this->model->addToPackage($package);
         
+    }
+    public function saveInputs(){
+        $this->model->saveInputs();
+    }
+    public function ping($id){
+        $this->model->ping($id);
     }
     public function create() 
     {

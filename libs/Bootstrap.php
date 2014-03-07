@@ -12,7 +12,7 @@ class Bootstrap {
     private $_errorModule = 'error';
     private $_defaultFile = 'index.php';
     private $_ZebraForm = 'Zebra_Form/Zebra_Form.php'; 
-    private $_allowLang = Array('es','en','it');
+    private $_allowLang = Array('es','en');
     /**
      * Starts the Bootstrap
      * 
@@ -181,7 +181,7 @@ class Bootstrap {
             
         } else {
             $this->_error();
-            $this->_controller->index();
+            //$this->_controller->index();
             return false;
         }
     }

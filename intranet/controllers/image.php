@@ -26,5 +26,12 @@ class Image extends Controller {
         $this->model->delete($id);
         header('location: ' . URL .LANG. '/page/view/'.$page);
     }
+    function crop() {
+       $img=new upload;
+       $img->crop();
+       if(isset($_POST['redirect']))
+           header('location: ' . $_POST['redirect']);
+       else header('location: ' . $_SERVER['PHP_SELF']);
+    }
 
 }

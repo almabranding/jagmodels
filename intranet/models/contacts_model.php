@@ -4,6 +4,7 @@ class Contacts_Model extends Model {
     public function __construct() {
         parent::__construct();
         $this->wherepag=(Session::get('role')==1 || Session::get('role')==6)?"WHERE user_id!=0":"WHERE user_id=".Session::get('userid');
+        $this->wherepag=' WHERE 1=1 ';
     }
     public function searchForm() {
         $action = URL . LANG . '/contacts/searchResult';
@@ -50,11 +51,11 @@ class Contacts_Model extends Model {
         return $form;
     }
     public function getContacts($id) {
-        return $this->db->select("SELECT * FROM contacts WHERE id=".$id);  
+        return $this->db->select("SELECT * FROM ".DB_PREFIX . "contacts WHERE id=".$id);  
     }
     public function getContactsList($pag,$maxpp,$order='updated_at') {
         $min=$pag*$maxpp-$maxpp;
-        return $this->db->select("SELECT * FROM contacts ".$this->wherepag." ORDER by ".$order." LIMIT ".$min.",".$maxpp); 
+        return $this->db->select("SELECT * FROM ".DB_PREFIX . "contacts ".$this->wherepag." ORDER by ".$order." LIMIT ".$min.",".$maxpp); 
     }
     public function contactsToTable($lista,$order) {
         $order=  explode(' ', $order);
@@ -93,11 +94,10 @@ class Contacts_Model extends Model {
         $data = array(
             'name' => $_POST['name'],
             'email' => $_POST['email'],
-            'user_id' => Session::get('userid'),
             'updated_at' => $this->getTimeSQL(),
             'created_at' => $this->getTimeSQL()
         );
-        return $this->db->insert('contacts', $data);
+        return $this->db->insert(DB_PREFIX . 'contacts', $data);
        
     }
     public function edit($id){
@@ -106,14 +106,14 @@ class Contacts_Model extends Model {
             'email' => $_POST['email'],
             'updated_at' => $this->getTimeSQL(),
         );
-        $this->db->update('contacts', $data, 
+        $this->db->update(DB_PREFIX . 'contacts', $data, 
             "`id` = '{$id}'");
     }
     public function delete($id){
-         $this->db->delete('contacts', "`id` = {$id}");
+         $this->db->delete(DB_PREFIX . 'contacts', "`id` = {$id}");
     }   
     public function getResultSearch() {
-        $sql = 'SELECT * FROM contacts ' . $this->wherepag . ' AND (';
+        $sql = 'SELECT * FROM '.DB_PREFIX . 'contacts ' . $this->wherepag . ' AND (';
         if ($_POST['name'] != '') {
             $models = explode(", ", $_POST['name']);
             foreach ($models as $key => $value) {

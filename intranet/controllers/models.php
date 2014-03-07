@@ -10,6 +10,9 @@ class Models extends Controller {
     function index() { 
         header('location: '.URL.'/models/lista');  
     }
+    public function updateFotos(){
+        $this->model->updateFotos();
+    }
     public function view($id) 
     {
         $this->view->id=$id;
@@ -23,12 +26,18 @@ class Models extends Controller {
         $this->view->js = array('models/js/zebra_form.js','models/js/custom.js');
         $this->view->searchModel=$this->model->searchForm();
         $this->view->models=$this->model->getModels($pag,NUMPP);
-        $this->view->pagination=$this->model->getPagination($pag,NUMPP,'models','models/lista');
+        $this->view->pagination=$this->model->getPagination($pag,NUMPP,DB_PREFIX.'models','models/lista');
         $this->view->categories=$this->model->getModelsCategories();
         $this->view->render('models/list');  
     }
+    public function webview() 
+    {
+        $this->view->models=$this->model->getAllModelsComplete();
+        $this->view->render('models/webview');  
+    }
     public function addPhoto($modelId){
        $img=new upload;
+       $img->uploadImg();
        $this->model->addPhoto($modelId,$img->getImg());
     }
      public function addmodel() 
@@ -53,6 +62,7 @@ class Models extends Controller {
         $this->view->id=$id;
         $this->view->model=$this->model->getModel($id);
         $this->view->modelPhotos=$this->model->getModelPhotos($id);
+        $this->view->modelPhotosReserva=$this->model->getModelPhotosReserva($id);
         $this->view->categories=$this->model->getModelsCategories();
         $this->view->render('models/editportafolio');  
     }
@@ -91,9 +101,21 @@ class Models extends Controller {
         $this->model->deleteModel($id);
         header('location: ' . URL . LANG .  '/models/lista');
     }
+    public function websortByName() 
+    {
+        $this->model->websortByName();
+    }
+    public function websort() 
+    {
+        $this->model->websort();
+    }
     public function sort() 
     {
         $this->model->sort();
+    }
+    public function sortGroup() 
+    {
+        $this->model->sortGroup();
     }
     public function compositeSort(){
         $this->model->compositeSort();
@@ -117,7 +139,7 @@ class Models extends Controller {
         $this->view->id=$id;
         $this->view->form=$this->model->formImage('edit',$id);
         $this->view->img=$this->model->getImageInfo($id);
-        $this->view->model_id=$this->view->img[0]['model_id'];
+        $this->view->model_id=$this->view->img['model_id'];
         $this->view->render('models/viewimage');  
     }
     public function editImage($id) 

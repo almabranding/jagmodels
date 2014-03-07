@@ -3,7 +3,7 @@
 class upload extends Model {
     private $img;
     private $result;
-    public function upload($sub = 'temp/', $name = 'pic',$result=true) {
+    public function uploadImg($sub = 'temp/', $name = 'pic',$result=true) {
         parent::__construct();
         $this->result=$result;
         $allowed_ext = array('jpg', 'jpeg', 'png', 'gif', 'pdf', 'doc');
@@ -65,7 +65,13 @@ class upload extends Model {
         if(!$_POST['thumbnail']){
             $thumb = new thumb();
             $thumb->loadImage($filepath . $filename);
-            $thumb->resize(500, 'height');
+            //$thumb->resize(500, 'height');
+            $thumb->save($filepath . $filename);
+        }
+        if($_POST['thumbnail']){
+            $thumb = new thumb();
+            $thumb->loadImage($filepath . $filename);
+            $thumb->resize(180, 'width');
             $thumb->save($filepath . $filename);
         }
         //$this->createThumbs($filename,$filepath, $filepath, $thumbWidth );
@@ -82,7 +88,7 @@ class upload extends Model {
             'updated_at' => $this->getTimeSQL()
         );
         $photo_id = $this->db->insert(DB_PREFIX.'photos', $data);
-        $rute = $this->getRouteImg($data['created_at']);
+        $rute = $this->getRouteImg($data['img_date']);
         if (!is_dir(UPLOAD . $rute . 'original'))
             mkdir(UPLOAD . $rute . 'original/', 0777, true);
         copy(UPLOAD . 'temp/' . $img['file'], UPLOAD . $rute . 'original/' . $img['file']);

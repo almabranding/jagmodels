@@ -25,7 +25,7 @@
             <header>
                 <div class="header_logo">
                     <div class="wrapper">
-                        <a href="<?=URL ; ?>/"><div id="logo"><img src="<?=URL?>/public/images/logo.png"></div></a>
+                        <a href="<?=URL ; ?>/"><div id="logo"><img src="<?=URL?>/public/img/logo.png"></div></a>
                     <div class="header_login"><a onClick="location.href = '<?= URL  . '/users/editCreateUser/' . Session::get('userid'); ?>'">My account</a> | <a onClick="location.href = '<?= URL . 'users/out'; ?>'">Logout</a></div>
                   
                     </div>
@@ -36,7 +36,9 @@
                         <li><a href="<?php echo URL ; ?>models/lista">models</a></li>
                         <li><a href="<?php echo URL ; ?>packages/lista">packages</a></li>
                         <li><a href="<?php echo URL ; ?>contacts/lista">contacts</a></li>
-                        <? if (Session::get('role') == 1 || Session::get('role') == 6 || Session::get('role') == 2) { ?><li><a href="<?php echo URL ; ?>agencies/lista">agencies</a></li> <? } ?>
+                        <li><a href="<?php echo URL ; ?>press/lista">press</a></li>
+                        <li><a href="<?php echo URL ; ?>media/lista">media</a></li>
+                        <li><a href="<?php echo URL ; ?>agencies/lista">agencies</a></li>
                         <? if (Session::get('role') == 1 || Session::get('role') == 6 || Session::get('role') == 2) { ?><li><a href="<?php echo URL ; ?>users/lista">users</a></li><? } ?>
                         <? if (Session::get('role') == 1 || Session::get('role') == 6 || Session::get('role') == 2) { ?><li><a href="<?php echo URL ; ?>log/lista">log</a></li><? } ?>
                     </ul>

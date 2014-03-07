@@ -43,4 +43,11 @@ function updateListItem(itemId, newStatus) {
         if($('#recipients').val()!="") coma=', ';
         $('#recipients').val($('#recipients').val()+coma+$(this).val());
     });
+    $('#saveInputs').on('click', function() {
+        var $listaInputs = $(':input').serialize();
+        $listaInputs=$listaInputs+'&package_id='+$('#packageId').val();
+        $.post(ROOT + 'ES/packages/saveInputs', $listaInputs).done(function(data) {
+            alert("Changes has been saved");
+        });
+    });
   });
